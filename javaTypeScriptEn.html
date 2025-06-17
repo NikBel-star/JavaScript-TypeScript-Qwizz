@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript & TypeScript Quiz Master</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        .language-btn {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .language-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .language-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-color: #1d4ed8;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Language Switcher Header -->
+        <div class="flex justify-end mb-6">
+            <div class="bg-white rounded-xl p-3 shadow-lg">
+                <div class="flex space-x-2">
+                    <button onclick="switchLanguage('ge')"
+                            class="language-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                        <i class="fas fa-globe mr-2"></i>ქართული
+                    </button>
+                    <button onclick="switchLanguage('en')"
+                            class="language-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-blue-600 text-white">
+                        <i class="fas fa-globe mr-2"></i>English
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-800 mb-2">
+                <i class="fas fa-code mr-3"></i>
+                JavaScript & TypeScript Quiz Master
+            </h1>
+            <p class="text-gray-600 text-lg">Test your knowledge with interactive quizzes</p>
+        </header>
+
+        <!-- Main Content -->
+        <div id="app" class="max-w-4xl mx-auto">
+            <!-- Home Screen -->
+            <div id="homeScreen" class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Choose Your Challenge</h2>
+                    <p class="text-gray-600">Select a subject and difficulty level to begin</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- JavaScript Section -->
+                    <div class="bg-yellow-50 rounded-xl p-6 border-2 border-yellow-200">
+                        <div class="text-center mb-6">
+                            <i class="fab fa-js-square text-yellow-500 text-5xl mb-3"></i>
+                            <h3 class="text-xl font-semibold text-gray-800">JavaScript</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <button onclick="startQuiz('javascript', 'beginner')"
+                                    class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
+                                <i class="fas fa-seedling mr-2"></i>Beginner Level
+                            </button>
+                            <button onclick="startQuiz('javascript', 'medium')"
+                                    class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
+                                <i class="fas fa-seedling mr-2"></i>medium Level
+                            </button>
+                            <button onclick="startQuiz('javascript', 'advanced')"
+                                    class="w-full bg-yellow-800 hover:bg-yellow-900 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
+                                <i class="fas fa-fire mr-2"></i>Advanced Level
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TypeScript Section -->
+                    <div class="bg-blue-50 rounded-xl p-6 border-2 border-blue-200">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-code text-blue-500 text-5xl mb-3"></i>
+                            <h3 class="text-xl font-semibold text-gray-800">TypeScript</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <button onclick="startQuiz('typescript', 'medium')"
+                                    class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
+                                <i class="fas fa-seedling mr-2"></i>Beginner Level
+                            </button>
+                            <button onclick="startQuiz('typescript', 'medium')"
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
+                                <i class="fas fa-seedling mr-2"></i>medium Level
+                            </button>
+                            <button onclick="startQuiz('typescript', 'advanced')"
+                                    class="w-full bg-blue-800 hover:bg-blue-900 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
+                                <i class="fas fa-fire mr-2"></i>Advanced Level
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="mt-8 bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">
+                        <i class="fas fa-chart-bar mr-2"></i>Your Statistics
+                    </h3>
+                    <div id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="bg-white rounded-lg p-3">
+                            <div class="text-2xl font-bold text-indigo-600" id="totalQuizzes">0</div>
+                            <div class="text-sm text-gray-600">Total Quizzes</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3">
+                            <div class="text-2xl font-bold text-green-600" id="avgScore">0%</div>
+                            <div class="text-sm text-gray-600">Avg Score</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3">
+                            <div class="text-2xl font-bold text-yellow-600" id="jsQuizzes">0</div>
+                            <div class="text-sm text-gray-600">JS Quizzes</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3">
+                            <div class="text-2xl font-bold text-blue-600" id="tsQuizzes">0</div>
+                            <div class="text-sm text-gray-600">TS Quizzes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div id="quizScreen" class="bg-white rounded-2xl shadow-xl p-8 hidden">
+                <!-- Quiz Header -->
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="goHome()" class="text-gray-600 hover:text-gray-800 transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                    </button>
+                    <div class="text-center">
+                        <h2 id="quizTitle" class="text-xl font-semibold text-gray-800"></h2>
+                        <p id="quizProgress" class="text-gray-600"></p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">Score</div>
+                        <div id="currentScore" class="text-lg font-semibold text-indigo-600">0/0</div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+                    <div id="progressBar" class="bg-indigo-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Question Card -->
+                <div id="questionCard" class="mb-8">
+                    <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                        <h3 id="questionText" class="text-lg font-medium text-gray-800 mb-4"></h3>
+                        <pre id="codeBlock" class="bg-gray-800 text-green-400 p-4 rounded-lg text-sm overflow-x-auto hidden"></pre>
+                    </div>
+
+                    <div id="answerOptions" class="space-y-3"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-between">
+                    <button id="prevBtn" onclick="previousQuestion()"
+                            class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-left mr-2"></i>Previous
+                    </button>
+                    <button id="nextBtn" onclick="nextQuestion()"
+                            class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        Next<i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="resultsScreen" class="bg-white rounded-2xl shadow-xl p-8 hidden">
+                <div class="text-center mb-8">
+                    <div id="resultIcon" class="text-6xl mb-4"></div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Quiz Complete!</h2>
+                    <p id="resultMessage" class="text-xl text-gray-600"></p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div id="finalScore" class="text-3xl font-bold text-indigo-600 mb-2"></div>
+                            <div class="text-gray-600">Final Score</div>
+                        </div>
+                        <div>
+                            <div id="correctAnswers" class="text-3xl font-bold text-green-600 mb-2"></div>
+                            <div class="text-gray-600">Correct</div>
+                        </div>
+                        <div>
+                            <div id="totalQuestions" class="text-3xl font-bold text-gray-600 mb-2"></div>
+                            <div class="text-gray-600">Total</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-4">
+                    <button onclick="goHome()"
+                            class="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </button>
+                    <button onclick="retakeQuiz()"
+                            class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                        <i class="fas fa-redo mr-2"></i>Retake Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data
+        const quizData = {
+            javascript: {
+                beginner: [
+                    {
+                        question: "Which of the following is the correct way to declare a variable in JavaScript?",
+                        options: ["var myVar = 5;", "variable myVar = 5;", "v myVar = 5;", "declare myVar = 5;"],
+                        correct: 0,
+                        explanation: "The 'var' keyword is one of the correct ways to declare a variable in JavaScript. 'let' and 'const' are also valid."
+                    },
+                    {
+                        question: " What is the output of the following code?",
+                        code: "console.log(2 + '2');",
+                        options: ["4", "22", "2 + 2", "undefined"],
+                        correct: 1,
+                        explanation: "When a number is added to a string, JavaScript converts the number to a string and concatenates them."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log('Hello' + 'World');",
+                        options: ["HelloWorld", "Hello World", "Hello+World", "undefined"],
+                        correct: 0,
+                        explanation: "The + operator concatenates strings."
+                    },
+                    {
+                        question: " What is the output of the following code?",
+                        code: "console.log(typeof 10);",
+                        options: ["number", "string", "object", "undefined"],
+                        correct: 0,
+                        explanation: "The typeof operator returns 'number' for numeric values."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof 'Hello World');",
+                        options: ["string", "text", "object", "undefined"],
+                        correct: 0,
+                        explanation: "The typeof operator returns 'string' for string values."
+                    },
+                    {
+                        question: "Which of the following is the correct way to declare a variable in JavaScript?",
+                        options: ["var myVar = 5;", "variable myVar = 5;", "v myVar = 5;", "declare myVar = 5;"],
+                        correct: 0,
+                        explanation: "The 'var' keyword is one of the correct ways to declare a variable in JavaScript. 'let' and 'const' are also valid."
+                    },
+                    {
+                        question: "What will be the output of the following code?",
+                        code: "console.log(typeof 'Hello World');",
+                        options: ["string", "text", "object", "undefined"],
+                        correct: 0,
+                        explanation: "The typeof operator returns 'string' for string values."
+                    },
+                    {
+                        question: "Which method is used to add an element to the end of an array?",
+                        options: ["push()", "add()", "append()", "insert()"],
+                        correct: 0,
+                        explanation: "The push() method adds one or more elements to the end of an array."
+                    },
+                    {
+                        question: "What is the correct syntax for a for loop in JavaScript?",
+                        options: [
+                            "for (i = 0; i < 5; i++)",
+                            "for i = 1 to 5",
+                            "for (i <= 5; i++)",
+                            "repeat (i = 0; i < 5; i++)"
+                        ],
+                        correct: 0,
+                        explanation: "The correct syntax is: for (initialization; condition; increment/decrement)"
+                    },
+                    {
+                        question: "How do you create a function in JavaScript?",
+                        options: [
+                            "function myFunction() {}",
+                            "create myFunction() {}",
+                            "def myFunction() {}",
+                            "function = myFunction() {}"
+                        ],
+                        correct: 0,
+                        explanation: "Functions are declared using the 'function' keyword followed by the function name and parentheses."
+                    },
+                    {
+                        question: "What will this code output?",
+                        code: "let x = 10;\nlet y = '10';\nconsole.log(x == y);",
+                        options: ["true", "false", "undefined", "error"],
+                        correct: 0,
+                        explanation: "The == operator performs type coercion, so 10 == '10' returns true."
+                    },
+                    {
+                        question: "Which method is used to remove the last element from an array?",
+                        options: ["pop()", "remove()", "delete()", "removeLast()"],
+                        correct: 0,
+                        explanation: "The pop() method removes and returns the last element from an array."
+                    },
+                    {
+                        question: "What is the correct way to write a JavaScript comment?",
+                        options: ["// This is a comment", "# This is a comment", "<!-- This is a comment -->", "* This is a comment *"],
+                        correct: 0,
+                        explanation: "Single-line comments in JavaScript start with //. Multi-line comments use /* ... */"
+                    }
+                ],
+                medium: [
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(0.1 + 0.2 === 0.3);",
+                        options: ["true", "false", "undefined", "error"],
+                        correct: 1,
+                        explanation: "Due to floating-point arithmetic, 0.1 + 0.2 does not exactly equal 0.3."
+                    },
+                    {
+                        question: " რა არის var-ის scope?",
+                        code:`var x = 1;
+                        {
+                            var x = 2;
+                            }`
+
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof null);",
+                        options: ["object", "null", "undefined", "error"],
+                        correct: 0,
+                        explanation: "In JavaScript, null is considered an object."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof NaN);",
+                        options: ["number", "NaN", "undefined", "error"],
+                        correct: 0,
+                        explanation: "NaN is a special value of the number type."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof Infinity);",
+                        options: ["number", "Infinity", "undefined", "error"],
+                        correct: 0,
+                        explanation: "Infinity is a special value of the number type."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof []);",
+                        options: ["array", "object", "undefined", "error"],
+                        correct: 1,
+                        explanation: "In JavaScript, arrays are objects."
+                    }
+                ],
+                    
+                advanced: [
+                    {
+                        question: "What will be the output of this closure example?",
+                        code: "function outer() {\n  let count = 0;\n  return function() {\n    return ++count;\n  };\n}\nlet counter = outer();\nconsole.log(counter());\nconsole.log(counter());",
+                        options: ["1, 2", "0, 1", "undefined, undefined", "1, 1"],
+                        correct: 0,
+                        explanation: "Closures maintain access to the outer function's variables. Each call to counter() increments and returns the count."
+                    },
+                    {
+                        question: "What is the difference between call() and apply() methods?",
+                        options: [
+                            "call() takes arguments individually, apply() takes an array",
+                            "call() is faster than apply()",
+                            "apply() can only be used with functions",
+                            "There is no difference"
+                        ],
+                        correct: 0,
+                        explanation: "call() accepts arguments individually: func.call(this, arg1, arg2), while apply() accepts an array: func.apply(this, [arg1, arg2])"
+                    },
+                    {
+                        question: "What will this Promise code output?",
+                        code: "console.log('1');\nPromise.resolve().then(() => console.log('2'));\nconsole.log('3');",
+                        options: ["1, 3, 2", "1, 2, 3", "2, 1, 3", "3, 2, 1"],
+                        correct: 0,
+                        explanation: "Synchronous code runs first (1, 3), then the Promise callback runs in the next tick (2)."
+                    },
+                    {
+                        question: "What is the output of this prototype chain example?",
+                        code: "function Animal() {}\nAnimal.prototype.speak = function() { return 'Animal speaks'; };\n\nfunction Dog() {}\nDog.prototype = Object.create(Animal.prototype);\nDog.prototype.speak = function() { return 'Dog barks'; };\n\nlet dog = new Dog();\nconsole.log(dog.speak());",
+                        options: ["Dog barks", "Animal speaks", "undefined", "Error"],
+                        correct: 0,
+                        explanation: "The Dog prototype overrides the Animal speak method, so 'Dog barks' is returned."
+                    },
+                    {
+                        question: "What does this destructuring assignment do?",
+                        code: "const { name: userName, age = 25 } = { name: 'John' };",
+                        options: [
+                            "Creates userName='John' and age=25",
+                            "Creates name='John' and age=25",
+                            "Creates userName=undefined and age=25",
+                            "Throws an error"
+                        ],
+                        correct: 0,
+                        explanation: "This creates a new variable 'userName' with value 'John' and 'age' with default value 25."
+                    },
+                    {
+                        question: "What will this async/await code log?",
+                        code: "async function test() {\n  console.log('A');\n  await Promise.resolve();\n  console.log('B');\n}\ntest();\nconsole.log('C');",
+                        options: ["A, C, B", "A, B, C", "C, A, B", "B, A, C"],
+                        correct: 0,
+                        explanation: "A logs first, then C (synchronous), then B (after the await resolves)."
+                    },
+                    {
+                        question: "What is the result of this hoisting example?",
+                        code: "console.log(x);\nvar x = 5;\nfunction x() { return 'function'; }",
+                        options: ["function", "undefined", "5", "Error"],
+                        correct: 0,
+                        explanation: "Function declarations are hoisted above variable declarations, so x is the function."
+                    },
+                    {
+                        question: "What does this spread operator code create?",
+                        code: "const arr1 = [1, 2];\nconst arr2 = [3, 4];\nconst result = [...arr1, ...arr2];",
+                        options: ["[1, 2, 3, 4]", "[[1, 2], [3, 4]]", "[1, 2], [3, 4]", "Error"],
+                        correct: 0,
+                        explanation: "The spread operator (...) expands arrays, creating a new array with all elements."
+                    }
+                ]
+            },
+            typescript: {
+                beginner: [
+                    {
+                        question: "How do you specify that a variable should be a string in TypeScript?",
+                        options: ["let name: string", "let name as string", "let string name", "let name = string"],
+                        correct: 0,
+                        explanation: "Type annotations in TypeScript use the colon syntax: variableName: type"
+                    },
+                    {
+                        question: "What is the correct way to define an interface in TypeScript?",
+                        code: "interface Person {\n  name: string;\n  age: number;\n}",
+                        options: ["This is correct", "Use 'class' instead of 'interface'", "Add 'public' before properties", "Use 'type' instead of 'interface'"],
+                        correct: 0,
+                        explanation: "This is the correct syntax for defining an interface in TypeScript."
+                    },
+                    {
+                        question: "Which of these is a valid TypeScript array type?",
+                        options: ["number[]", "Array<number>", "Both are valid", "Neither is valid"],
+                        correct: 2,
+                        explanation: "TypeScript supports both number[] and Array<number> syntax for array types."
+                    },
+                    {
+                        question: "What does the '?' operator do in TypeScript interfaces?",
+                        code: "interface User {\n  name: string;\n  email?: string;\n}",
+                        options: ["Makes the property optional", "Makes the property nullable", "Creates a union type", "Indicates a method"],
+                        correct: 0,
+                        explanation: "The ? operator makes interface properties optional, meaning they may or may not be present."
+                    },
+                    {
+                        question: "How do you create a union type in TypeScript?",
+                        options: ["string | number", "string + number", "string & number", "string || number"],
+                        correct: 0,
+                        explanation: "Union types are created using the pipe (|) operator."
+                    },
+                    {
+                        question: "What is the TypeScript equivalent of JavaScript's 'any' type?",
+                        options: ["any", "unknown", "object", "void"],
+                        correct: 0,
+                        explanation: "The 'any' type in TypeScript disables type checking, similar to regular JavaScript."
+                    },
+                    {
+                        question: "How do you specify function parameter types?",
+                        code: "function greet(name: string): string {\n  return `Hello, ${name}`;\n}",
+                        options: ["This is correct", "Put types after the function name", "Use brackets around types", "Types go in comments"],
+                        correct: 0,
+                        explanation: "Parameter types are specified after the parameter name with a colon."
+                    },
+                    {
+                        question: "What command compiles TypeScript files?",
+                        options: ["tsc", "typescript", "compile", "ts-compile"],
+                        correct: 0,
+                        explanation: "The TypeScript compiler command is 'tsc' (TypeScript Compiler)."
+                    }
+                ],
+                medium:[
+                    {
+                        question: "What is the correct way to define a tuple type in TypeScript?",
+                        options: ["[string, number]", "string, number", "(string, number)", "string | number"],
+                        correct: 0,
+                        explanation: "Tuples are defined using square brackets with specific types."
+                    },
+                    {
+                        question: "What does the 'readonly' keyword do in TypeScript?",
+                        options: ["Prevents modification of properties", "Makes properties optional", "Allows any type", "No effect"],
+                        correct: 0,
+                        explanation: "The 'readonly' keyword makes properties immutable."
+                    },
+                    {
+                        question: "What is the correct way to define a generic type in TypeScript?",
+                        code: "function identity<T>(arg: T): T {\n  return arg;\n}",
+                        options: ["This is correct", "Use 'generic' instead of 'T'", "Put types in brackets", "Use 'any' instead of 'T'"],
+                        correct: 0,
+                        explanation: "Generics are defined using angle brackets with a type parameter."
+                    },
+                    {
+                        question: "What is the correct way to define a type alias in TypeScript?",
+                        code: "type Point = { x: number; y: number; };",
+                        options: ["This is correct", "Use 'interface' instead of 'type'", "Add 'public' before properties", "Use 'class' instead of 'type'"],
+                        correct: 0,
+                        explanation: "Type aliases are defined using the 'type' keyword."
+                    },
+                    {
+                        question: "What is the correct way to define a type assertion in TypeScript?",
+                        code: "let value: any = 'hello';\nlet strLength: number = (value as string).length;",
+                        options: ["This is correct", "Use 'assert' instead of 'as'", "Put types in brackets", "Use 'any' instead of 'string'"],
+                        correct: 0,
+                        explanation: "Type assertions are defined using the 'as' keyword."
+                    },
+                    {
+                        question: "What is the correct way to define a type guard in TypeScript?",
+                        code: "function isString(value: any): value is string {\n  return typeof value === 'string';\n}",
+                        options: ["This is correct", "Use 'guard' instead of 'is'", "Put types in brackets", "Use 'any' instead of 'string'"],
+                        correct: 0,
+                        explanation: "Type guards are defined using the 'is' keyword."
+                    }
+                ], 
+                advanced: [
+                    {
+                        question: "What does this mapped type do?",
+                        code: "type Partial<T> = {\n  [P in keyof T]?: T[P];\n}",
+                        options: [
+                            "Makes all properties optional",
+                            "Makes all properties required",
+                            "Creates a union of property types",
+                            "Removes all properties"
+                        ],
+                        correct: 0,
+                        explanation: "This is the built-in Partial<T> utility type that makes all properties optional."
+                    },
+                    {
+                        question: "What is the purpose of this conditional type?",
+                        code: "type NonNullable<T> = T extends null | undefined ? never : T;",
+                        options: [
+                            "Removes null and undefined from T",
+                            "Adds null and undefined to T",
+                            "Checks if T is null",
+                            "Returns only null values"
+                        ],
+                        correct: 0,
+                        explanation: "This conditional type excludes null and undefined from type T."
+                    },
+                    {
+                        question: "What does this generic constraint do?",
+                        code: "function getValue<T extends keyof User>(obj: User, key: T): User[T] {\n  return obj[key];\n}",
+                        options: [
+                            "Ensures T is a property of User",
+                            "Makes T extend User class",
+                            "Creates a new User type",
+                            "Restricts T to string type"
+                        ],
+                        correct: 0,
+                        explanation: "The constraint 'T extends keyof User' ensures T is a valid property key of User."
+                    },
+                    {
+                        question: "What is the difference between 'interface' and 'type' aliases?",
+                        options: [
+                            "Interfaces can be extended and merged, types cannot be merged",
+                            "Types are faster than interfaces",
+                            "Interfaces only work with objects",
+                            "There is no difference"
+                        ],
+                        correct: 0,
+                        explanation: "Interfaces support declaration merging and extension, while type aliases are more flexible but cannot be merged."
+                    },
+                    {
+                        question: "What does this decorator syntax represent?",
+                        code: "@Component({\n  selector: 'app-example'\n})\nclass ExampleComponent { }",
+                        options: [
+                            "A class decorator with metadata",
+                            "A function call",
+                            "An interface implementation",
+                            "A type annotation"
+                        ],
+                        correct: 0,
+                        explanation: "This is a decorator pattern, commonly used in frameworks like Angular for adding metadata to classes."
+                    },
+                    {
+                        question: "What does this Pick utility type create?",
+                        code: "interface User {\n  id: number;\n  name: string;\n  email: string;\n}\ntype UserPreview = Pick<User, 'id' | 'name'>;",
+                        options: [
+                            "{ id: number; name: string; }",
+                            "{ email: string; }",
+                            "{ id: number; name: string; email: string; }",
+                            "string"
+                        ],
+                        correct: 0,
+                        explanation: "Pick<T, K> creates a type with only the specified properties from T."
+                    },
+                    {
+                        question: "What is a type guard in TypeScript?",
+                        code: "function isString(value: any): value is string {\n  return typeof value === 'string';\n}",
+                        options: [
+                            "A function that narrows types at runtime",
+                            "A compile-time type check",
+                            "A way to guard against errors",
+                            "A protected class member"
+                        ],
+                        correct: 0,
+                        explanation: "Type guards are functions that perform runtime checks and help TypeScript narrow types."
+                    },
+                    {
+                        question: "What does the 'never' type represent?",
+                        options: [
+                            "A type that never occurs/has no values",
+                            "An optional type",
+                            "A null type",
+                            "An undefined type"
+                        ],
+                        correct: 0,
+                        explanation: "The 'never' type represents values that never occur, such as functions that always throw or never return."
+                    }
+                ]
+            }
+        };
+
+        // State Management
+        let currentQuiz = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let score = 0;
+        let quizStats = JSON.parse(localStorage.getItem('quizStats')) || {
+            totalQuizzes: 0,
+            totalScore: 0,
+            jsQuizzes: 0,
+            tsQuizzes: 0
+        };
+
+        // Initialize the app
+        function init() {
+            updateStats();
+            showScreen('homeScreen');
+        }
+
+        // Screen Management
+        function showScreen(screenId) {
+            const screens = ['homeScreen', 'quizScreen', 'resultsScreen'];
+            screens.forEach(screen => {
+                document.getElementById(screen).classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        // Start Quiz
+        function startQuiz(subject, level) {
+            currentQuiz = {
+                subject: subject,
+                level: level,
+                questions: [...quizData[subject][level]]
+            };
+           
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            score = 0;
+           
+            // Shuffle questions
+            currentQuiz.questions = shuffleArray(currentQuiz.questions);
+           
+            showScreen('quizScreen');
+            updateQuizHeader();
+            displayQuestion();
+        }
+
+        // Display Current Question
+        function displayQuestion() {
+            const question = currentQuiz.questions[currentQuestionIndex];
+            const questionCard = document.getElementById('questionCard');
+           
+            document.getElementById('questionText').textContent = question.question;
+           
+            // Show code block if present
+            const codeBlock = document.getElementById('codeBlock');
+            if (question.code) {
+                codeBlock.textContent = question.code;
+                codeBlock.classList.remove('hidden');
+            } else {
+                codeBlock.classList.add('hidden');
+            }
+           
+            // Display answer options
+            const optionsContainer = document.getElementById('answerOptions');
+            optionsContainer.innerHTML = '';
+           
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('button');
+                optionElement.className = `w-full text-left p-4 rounded-lg border-2 border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 transition duration-200 ${
+                    userAnswers[currentQuestionIndex] === index ? 'border-indigo-500 bg-indigo-100' : ''
+                }`;
+                optionElement.innerHTML = `
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center text-sm font-medium ${
+                            userAnswers[currentQuestionIndex] === index ? 'bg-indigo-500 text-white border-indigo-500' : ''
+                        }">
+                            ${String.fromCharCode(65 + index)}
+                        </span>
+                        <span class="font-mono text-sm">${option}</span>
+                    </div>
+                `;
+                optionElement.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(optionElement);
+            });
+           
+            updateNavigationButtons();
+            updateProgressBar();
+        }
+
+        // Select Answer
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestionIndex] = answerIndex;
+            displayQuestion(); // Refresh to show selection
+        }
+
+        // Navigation
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuiz.questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        // Update UI Elements
+        function updateQuizHeader() {
+            const title = `${currentQuiz.subject.charAt(0).toUpperCase() + currentQuiz.subject.slice(1)} - ${currentQuiz.level.charAt(0).toUpperCase() + currentQuiz.level.slice(1)}`;
+            document.getElementById('quizTitle').textContent = title;
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('quizProgress').textContent = `Question ${currentQuestionIndex + 1} of ${currentQuiz.questions.length}`;
+           
+            // Update score display
+            const currentScore = userAnswers.filter((answer, index) =>
+                answer === currentQuiz.questions[index].correct
+            ).length;
+            document.getElementById('currentScore').textContent = `${currentScore}/${userAnswers.length}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+           
+            prevBtn.disabled = currentQuestionIndex === 0;
+           
+            if (currentQuestionIndex === currentQuiz.questions.length - 1) {
+                nextBtn.textContent = 'Finish Quiz';
+                nextBtn.innerHTML = 'Finish Quiz<i class="fas fa-check ml-2"></i>';
+            } else {
+                nextBtn.innerHTML = 'Next<i class="fas fa-chevron-right ml-2"></i>';
+            }
+           
+            nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
+        }
+
+        // Finish Quiz
+        function finishQuiz() {
+            score = userAnswers.filter((answer, index) =>
+                answer === currentQuiz.questions[index].correct
+            ).length;
+           
+            // Update statistics
+            quizStats.totalQuizzes++;
+            quizStats.totalScore += score;
+            if (currentQuiz.subject === 'javascript') {
+                quizStats.jsQuizzes++;
+            } else {
+                quizStats.tsQuizzes++;
+            }
+           
+            localStorage.setItem('quizStats', JSON.stringify(quizStats));
+           
+            showResults();
+            showScreen('resultsScreen');
+        }
+
+        // Show Results
+        function showResults() {
+            const percentage = Math.round((score / currentQuiz.questions.length) * 100);
+           
+            // Update result display
+            document.getElementById('finalScore').textContent = `${percentage}%`;
+            document.getElementById('correctAnswers').textContent = score;
+            document.getElementById('totalQuestions').textContent = currentQuiz.questions.length;
+           
+            // Set result message and icon
+            let message, icon;
+            if (percentage >= 90) {
+                message = "Excellent! You're a master!";
+                icon = "🏆";
+            } else if (percentage >= 70) {
+                message = "Great job! Well done!";
+                icon = "🎉";
+            } else if (percentage >= 50) {
+                message = "Good effort! Keep practicing!";
+                icon = "👍";
+            } else {
+                message = "Keep studying and try again!";
+                icon = "📚";
+            }
+           
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('resultIcon').textContent = icon;
+        }
+
+        // Navigation Functions
+        function goHome() {
+            updateStats();
+            showScreen('homeScreen');
+        }
+
+        function retakeQuiz() {
+            startQuiz(currentQuiz.subject, currentQuiz.level);
+        }
+
+        // Update Statistics Display
+        function updateStats() {
+            document.getElementById('totalQuizzes').textContent = quizStats.totalQuizzes;
+            document.getElementById('jsQuizzes').textContent = quizStats.jsQuizzes;
+            document.getElementById('tsQuizzes').textContent = quizStats.tsQuizzes;
+           
+            const avgScore = quizStats.totalQuizzes > 0
+                ? Math.round((quizStats.totalScore / (quizStats.totalQuizzes * 8)) * 100)
+                : 0;
+            document.getElementById('avgScore').textContent = `${avgScore}%`;
+        }
+
+        // Utility Functions
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Language Switching Function
+        function switchLanguage(lang) {
+            if (lang === 'ge') {
+                window.location.href = 'javaTypeScriptGe.html.html';
+            } else if (lang === 'en') {
+                // Already on English version, just refresh or do nothing
+                window.location.href = 'javaTypeScriptEn.html';
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
+

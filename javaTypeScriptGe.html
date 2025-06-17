@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript & TypeScript ქვიზი</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+        }
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh;
+        } 
+        .card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .option-btn {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .option-btn.correct {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-color: #059669;
+            color: white;
+        }
+        .option-btn.incorrect {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-color: #dc2626;
+            color: white;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #10b981, #059669);
+            height: 8px;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .category-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .explanation {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-left: 4px solid #0ea5e9;
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .language-btn {
+            border: 2px solid transparent;
+        }
+        .language-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .language-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-color: #1d4ed8;
+            color: white;
+        }
+    </style>
+</head>
+<body class="quiz-container">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Language Switcher Header -->
+        <div class="flex justify-end mb-6">
+            <div class="card rounded-xl p-3 shadow-lg">
+                <div class="flex space-x-2">
+                    <button onclick="switchLanguage('ge')"
+                        class="language-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-blue-600 text-white active">
+                        <i class="fas fa-globe mr-2"></i>ქართული
+                    </button>
+                    <button onclick="switchLanguage('en')"
+                        class="language-btn px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                        <i class="fas fa-globe mr-2"></i>English
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                <i class="fas fa-code mr-3"></i>JavaScript & TypeScript ქვიზი
+            </h1>
+            <p class="text-xl text-white opacity-90">შეამოწმეთ თქვენი ცოდნა პროგრამირებაში</p>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="mainMenu" class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- JavaScript Beginner -->
+                <div class="category-card card rounded-2xl p-6 shadow-xl" onclick="startQuiz('jsBeginner')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fab fa-js-square text-yellow-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">JavaScript დამწყები</h3>
+                        <p class="text-gray-600 mb-4">ძირითადი კონცეფციები და სინტაქსი</p>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>13 კითხვა</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- JavaScript Medium -->
+                <div class="category-card card rounded-2xl p-6 shadow-xl" onclick="startQuiz('jsMedium')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fab fa-js-square text-yellow-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">JavaScript საშუალო</h3>
+                        <p class="text-gray-600 mb-4">ძირითადი კონცეფციები და სინტაქსი</p>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>5 კითხვა</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- JavaScript Advanced -->
+                <div class="category-card card rounded-2xl p-6 shadow-xl" onclick="startQuiz('jsAdvanced')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fab fa-js-square text-yellow-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">JavaScript მოწინავე</h3>
+                        <p class="text-gray-600 mb-4">რთული კონცეფციები და შაბლონები</p>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-clock mr-1"></i>15 წუთი</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>8 კითხვა</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- TypeScript Beginner -->
+                <div class="category-card card rounded-2xl p-6 shadow-xl" onclick="startQuiz('tsBeginner')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-code text-blue-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">TypeScript დამწყები</h3>
+                        <p class="text-gray-600 mb-4">ტიპები და ძირითადი გამოყენება</p>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>14 კითხვა</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- TypeScript Medium -->
+                <div class="category-card card rounded-2xl p-6 shadow-xl" onclick="startQuiz('tsMedium')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-code text-blue-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">TypeScript საშუალო</h3>
+                        <p class="text-gray-600 mb-4">ტიპები და ძირითადი გამოყენება</p>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>8 კითხვა</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- TypeScript Advanced -->
+                <div class="category-card card rounded-2xl p-6 shadow-xl" onclick="startQuiz('tsAdvanced')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-code text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">TypeScript მოწინავე</h3>
+                        <p class="text-gray-600 mb-4">მოწინავე ტიპები და არქიტექტურა</p>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-clock mr-1"></i>15 წუთი</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>13 კითხვა</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="mt-8 card rounded-2xl p-6 shadow-xl">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">
+                    <i class="fas fa-chart-line mr-2"></i>თქვენი სტატისტიკა
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-blue-600" id="totalQuizzes">0</div>
+                        <div class="text-sm text-gray-600">მოსრულებული ქვიზები</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-600" id="averageScore">0%</div>
+                        <div class="text-sm text-gray-600">საშუალო ქულა</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-purple-600" id="bestCategory">-</div>
+                        <div class="text-sm text-gray-600">საუკეთესო კატეგორია</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-orange-600" id="timeSpent">0 წთ</div>
+                        <div class="text-sm text-gray-600">დახარჯული დრო</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Interface -->
+        <div id="quizInterface" class="max-w-4xl mx-auto hidden">
+            <!-- Quiz Header -->
+            <div class="card rounded-2xl p-6 shadow-xl mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <button onclick="backToMenu()" class="text-blue-600 hover:text-blue-800 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>მთავარ მენიუში დაბრუნება
+                    </button>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">კითხვა <span id="currentQuestion">1</span> / <span id="totalQuestions">8</span></div>
+                        <div class="text-sm text-gray-600">ქულა: <span id="currentScore">0</span></div>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="progress-bar h-2 rounded-full" id="progressBar" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="card rounded-2xl p-8 shadow-xl mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6" id="questionTitle">კითხვა იტვირთება...</h2>
+                <pre class="bg-gray-100 p-4 rounded-lg mb-6 overflow-x-auto" id="codeBlock" style="display:none;"><code></code></pre>
+                <div id="optionsContainer" class="space-y-3">
+                    <!-- Options will be populated here -->
+                </div>
+            </div>
+
+            <!-- Explanation Card -->
+            <div id="explanationCard" class="card rounded-2xl p-6 shadow-xl mb-6 hidden">
+                <div class="explanation rounded-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">
+                        <i class="fas fa-lightbulb mr-2"></i>ახსნა
+                    </h3>
+                    <div id="explanationText" class="text-gray-700"></div>
+                </div>
+                <button onclick="nextQuestion()" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors">
+                    <i class="fas fa-arrow-right mr-2"></i>შემდეგი კითხვა
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="max-w-4xl mx-auto hidden">
+            <div class="card rounded-2xl p-8 shadow-xl text-center">
+                <div class="text-6xl mb-6" id="resultIcon">🎉</div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4" id="resultTitle">შესანიშნავია!</h2>
+                <div class="text-6xl font-bold text-blue-600 mb-6" id="finalScore">0%</div>
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-600" id="correctAnswers">0</div>
+                        <div class="text-gray-600">სწორი პასუხი</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-red-600" id="wrongAnswers">0</div>
+                        <div class="text-gray-600">არასწორი პასუხი</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-blue-600" id="timeTaken">0 წთ</div>
+                        <div class="text-gray-600">დახარჯული დრო</div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <button onclick="restartQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg mr-4 transition-colors">
+                        <i class="fas fa-redo mr-2"></i>კვლავ სცადეთ
+                    </button>
+                    <button onclick="backToMenu()" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg transition-colors">
+                        <i class="fas fa-home mr-2"></i>მთავარ მენიუში დაბრუნება
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Quiz Data (შემოკლებული ვერსია სიგრძის შესამცირებლად)
+        const quizData = {
+            jsBeginner: [
+                {
+                    question: "რა არის JavaScript-ში var-ისა და let-ის ძირითადი განსხვავება?",
+                    code: `var x = 1;
+let y = 2;
+{
+    var x = 3;
+    let y = 4;
+    console.log(x, y); // ?
+}
+console.log(x, y); // ?`,
+                    options: [
+                        "var ქმნის ფუნქციური scoping-ს, let კი block scoping-ს",
+                        "let ქმნის ფუნქციური scoping-ს, var კი block scoping-ს",
+                        "ორივე იდენტურია",
+                        "var უფრო სწრაფია let-ზე"
+                    ],
+                    correct: 0,
+                    explanation: "var ქმნის ფუნქციურ ან გლობალურ scope-ს, ხოლო let ქმნის block scope-ს."
+                }
+            ],
+            jsMedium: [
+                {
+                    question: "რა არის callback function-ი?",
+                    code: `function doSomething(callback) {
+    callback();
+}
+doSomething(function() {
+    console.log('Callback function called!');
+});`,
+                    options: [
+                        "ფუნქცია, რომელიც გადაეცემა სხვა ფუნქციას",
+                        "ფუნქცია, რომელიც არ არის გადასაცემი",
+                        "ფუნქცია, რომელიც არ არის არგუმენტი",
+                        "ფუნქცია, რომელიც არ არის ფუნქცია"
+                    ],
+                    correct: 0,
+                    explanation: "Callback function-ი გადაეცემა სხვა ფუნქციას არგუმენტად."
+                }
+            ],
+            jsAdvanced: [
+                {
+                    question: "რა არის closure?",
+                    code: `function outerFunction(x) {
+    return function innerFunction(y) {
+        return x + y;
+    };
+}
+const addFive = outerFunction(5);
+console.log(addFive(3)); // ?`,
+                    options: [
+                        "8 - closure ინახავს outer scope-ის ცვლადებს",
+                        "Error - x არ არის განსაზღვრული",
+                        "undefined",
+                        "3"
+                    ],
+                    correct: 0,
+                    explanation: "Closure საშუალებას აძლევს შიდა ფუნქციას შეინახოს გარე ფუნქციის ცვლადები."
+                }
+            ],
+            tsBeginner: [
+                {
+                    question: "რა არის TypeScript-ის ძირითადი მიზანი?",
+                    code: `let message: string = 'Hello';
+message = 42; // შეცდომა`,
+                    options: [
+                        "JavaScript-ში static typing-ის დამატება",
+                        "JavaScript-ის შეცვლა",
+                        "ახალი პროგრამირების ენის შექმნა",
+                        "მხოლოდ transpilation"
+                    ],
+                    correct: 0,
+                    explanation: "TypeScript ამატებს static typing-ს JavaScript-ში."
+                }
+            ],
+            tsMedium: [
+                {
+                    question: "რა არის Type Guards?",
+                    code: `function isString(value: any): value is string {
+    return typeof value === 'string';
+}`,
+                    options: [
+                        "Type Guards საშუალებას იძლევა ცვლადის type-ის შემოწმებას",
+                        "Type Guards იყენება მხოლოდ arrays-თან",
+                        "Type Guards არ არის TypeScript-ის ნაწილი",
+                        "Type Guards არ არსებობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "Type Guards საშუალებას აძლევს TypeScript-ს შეამოწმოს ცვლადის ტიპი runtime-ზე."
+                }
+            ],
+            tsAdvanced: [
+                {
+                    question: "რა არის Structural Typing?",
+                    code: `interface Person {
+    name: string;
+}
+let person = { name: "ანა", age: 25 };
+let p: Person = person; // OK`,
+                    options: [
+                        "Structural Typing ამოწმებს type-ს სტრუქტურის მიხედვით",
+                        "Structural Typing მხოლოდ classes-თან მუშაობს",
+                        "Structural Typing არ არსებობს",
+                        "Structural Typing მხოლოდ interfaces-თან მუშაობს"
+                    ],
+                    correct: 0,
+                    explanation: "Structural Typing (duck typing) ამოწმებს type-ის თავსებადობას სტრუქტურის მიხედვით."
+                },
+                {
+                    question: "რა არის Never Type?",
+                    code: `function fail(): never {
+    throw new Error("Something went wrong");
+}`,
+                    options: [
+                        "Never Type წარმოადგენს მნიშვნელობას, რომელიც არასოდეს ხდება",
+                        "Never Type გამოიყენება მხოლოდ null-ის ნაცვლად",
+                        "Never Type იგივეა, რაც void",
+                        "Never Type არ არსებობს"
+                    ],
+                    correct: 0,
+                    explanation: "Never Type გამოიყენება ფუნქციებისთვის, რომლებიც არასოდეს აბრუნებენ მნიშვნელობას."
+                }
+            ]
+        };
+
+        // JavaScript Logic
+        let currentCategory = '';
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let startTime = 0;
+        let stats = JSON.parse(localStorage.getItem('quizStats')) || {
+            totalQuizzes: 0,
+            totalScore: 0,
+            bestCategory: '',
+            bestScore: 0,
+            totalTime: 0
+        };
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                jsBeginner: 'JavaScript დამწყები',
+                jsMedium: 'JavaScript საშუალო',
+                jsAdvanced: 'JavaScript მოწინავე',
+                tsBeginner: 'TypeScript დამწყები',
+                tsMedium: 'TypeScript საშუალო',
+                tsAdvanced: 'TypeScript მოწინავე'
+            };
+            return names[category] || category;
+        }
+
+        function startQuiz(category) {
+            currentCategory = category;
+            currentQuestions = shuffleArray([...quizData[category]]);
+            currentQuestionIndex = 0;
+            score = 0;
+            startTime = Date.now();
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('quizInterface').classList.remove('hidden');
+            document.getElementById('resultsScreen').classList.add('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('totalQuestions').textContent = currentQuestions.length;
+            document.getElementById('currentScore').textContent = score;
+            document.getElementById('questionTitle').textContent = question.question;
+            
+            const codeBlock = document.getElementById('codeBlock');
+            if (question.code) {
+                codeBlock.style.display = 'block';
+                codeBlock.querySelector('code').textContent = question.code;
+            } else {
+                codeBlock.style.display = 'none';
+            }
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-btn w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:bg-gray-50 transition-colors';
+                button.innerHTML = `<span class="mr-2">${String.fromCharCode(65 + index)}.</span> ${option}`;
+                button.onclick = () => checkAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+            
+            document.getElementById('explanationCard').classList.add('hidden');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const question = currentQuestions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach((button, index) => {
+                button.disabled = true;
+                if (index === question.correct) {
+                    button.classList.add('correct');
+                }
+                if (index === selectedIndex && index !== question.correct) {
+                    button.classList.add('incorrect');
+                }
+            });
+            
+            if (selectedIndex === question.correct) {
+                score += 10;
+                document.getElementById('currentScore').textContent = score;
+            }
+            
+            const explanationCard = document.getElementById('explanationCard');
+            document.getElementById('explanationText').textContent = question.explanation;
+            explanationCard.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuestions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const timeTaken = Math.round((Date.now() - startTime) / 60000); // წუთებში
+            const percentage = Math.round((score / (currentQuestions.length * 10)) * 100);
+            document.getElementById('quizInterface').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = `${percentage}%`;
+            document.getElementById('correctAnswers').textContent = score / 10;
+            document.getElementById('wrongAnswers').textContent = currentQuestions.length - (score / 10);
+            document.getElementById('timeTaken').textContent = `${timeTaken} წთ`;
+            
+            stats.totalQuizzes++;
+            stats.totalScore += percentage;
+            stats.totalTime += timeTaken;
+            if (percentage > stats.bestScore || (percentage === stats.bestScore && getCategoryName(currentCategory).length < getCategoryName(stats.bestCategory).length)) {
+                stats.bestScore = percentage;
+                stats.bestCategory = currentCategory;
+            }
+            localStorage.setItem('quizStats', JSON.stringify(stats));
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('totalQuizzes').textContent = stats.totalQuizzes;
+            document.getElementById('averageScore').textContent = stats.totalQuizzes ? `${Math.round(stats.totalScore / stats.totalQuizzes)}%` : '0%';
+            document.getElementById('bestCategory').textContent = stats.bestCategory ? getCategoryName(stats.bestCategory) : '-';
+            document.getElementById('timeSpent').textContent = `${stats.totalTime} წთ`;
+        }
+
+        function restartQuiz() {
+            startQuiz(currentCategory);
+        }
+
+        function backToMenu() {
+            document.getElementById('quizInterface').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('mainMenu').classList.remove('hidden');
+        }
+
+        function switchLanguage(lang) {
+            const translations = {
+                ge: {
+                    title: 'JavaScript & TypeScript ქვიზი',
+                    subtitle: 'შეამოწმეთ თქვენი ცოდნა პროგრამირებაში',
+                    backToMenu: 'მთავარ მენიუში დაბრუნება',
+                    nextQuestion: 'შემდეგი კითხვა',
+                    restartQuiz: 'კვლავ სცადეთ',
+                    statsTitle: 'თქვენი სტატისტიკა',
+                    totalQuizzes: 'მოსრულებული ქვიზები',
+                    averageScore: 'საშუალო ქულა',
+                    bestCategory: 'საუკეთესო კატეგორია',
+                    timeSpent: 'დახარჯული დრო'
+                },
+                en: {
+                    title: 'JavaScript & TypeScript Quiz',
+                    subtitle: 'Test your programming knowledge',
+                    backToMenu: 'Back to Main Menu',
+                    nextQuestion: 'Next Question',
+                    restartQuiz: 'Try Again',
+                    statsTitle: 'Your Statistics',
+                    totalQuizzes: 'Completed Quizzes',
+                    averageScore: 'Average Score',
+                    bestCategory: 'Best Category',
+                    timeSpent: 'Time Spent'
+                }
+            };
+            
+            const t = translations[lang];
+            document.querySelector('h1').textContent = t.title;
+            document.querySelector('p.text-xl').textContent = t.subtitle;
+            document.querySelector('button[onclick="backToMenu()"]').childNodes[2].textContent = t.backToMenu;
+            document.querySelector('#explanationCard button').childNodes[2].textContent = t.nextQuestion;
+            document.querySelector('#resultsScreen button[onclick="restartQuiz()"]').childNodes[2].textContent = t.restartQuiz;
+            document.querySelector('#mainMenu h3.text-xl').textContent = t.statsTitle;
+            document.querySelector('#mainMenu .text-sm:nth-child(2)').textContent = t.totalQuizzes;
+            document.querySelector('#mainMenu .text-sm:nth-child(4)').textContent = t.averageScore;
+            document.querySelector('#mainMenu .text-sm:nth-child(6)').textContent = t.bestCategory;
+            document.querySelector('#mainMenu .text-sm:nth-child(8)').textContent = t.timeSpent;
+            
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`button[onclick="switchLanguage('${lang}')"]`).classList.add('active');
+        }
+
+        window.onload = updateStats;
+    </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol (MCP) - შესავალი</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+        .georgian-text {
+            font-family: 'Arial Unicode MS', Arial, sans-serif;
+        }
+        @media print {
+            body { print-color-adjust: exact; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 georgian-text">
+    <div class="max-w-4xl mx-auto p-8 bg-white min-h-screen">
+        <!-- Header -->
+        <div class="border-b-4 border-blue-600 pb-6 mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-network-wired text-blue-600 mr-3"></i>
+                Model Context Protocol (MCP) - შესავალი
+            </h1>
+            <p class="text-lg text-gray-600">AI აპლიკაციებისთვის სტანდარტიზებული კონტექსტის მიწოდების ღია პროტოკოლი</p>
+        </div>
+
+        <!-- Introduction Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4 flex items-center">
+                <i class="fas fa-info-circle mr-2"></i>შესავალი
+            </h2>
+            <div class="bg-blue-50 p-6 rounded-lg">
+                <p class="text-gray-700 leading-relaxed">
+                    MCP არის ღია პროტოკოლი, რომელიც სტანდარტიზებს იმას, თუ როგორ უზრუნველყოფენ აპლიკაციები კონტექსტს Large Language Models (LLMs)-ისთვის. ის მუშაობს ხიდის როლში, AI აპლიკაციებისთვის USB-C პორტის მსგავსად, რაც საშუალებას აძლევს LLM-ებს დაუკავშირდნენ სხვადასხვა მონაცემთა წყაროებსა და ხელსაწყოებს.
+                </p>
+            </div>
+        </section>
+
+        <!-- Why MCP Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-green-700 mb-4 flex items-center">
+                <i class="fas fa-question-circle mr-2"></i>რატომ MCP?
+            </h2>
+            <div class="bg-green-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">MCP ხელს უწყობს agent-ების და რთული workflow-ების შექმნას LLM-ების ზედა ფენაზე შემდეგის უზრუნველყოფით:</p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>LLM პირდაპირი plug-in-ისთვის წინასწარ აშენებული ინტეგრაციების მზარდი სია</li>
+                    <li>მოქნილობა LLM მომწოდებლებსა და vendor-ებს შორის გადასართველად</li>
+                    <li>ინფრასტრუქტურის ფარგლებში მონაცემების უსაფრთხოების საუკეთესო პრაქტიკა</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- General Architecture Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-purple-700 mb-4 flex items-center">
+                <i class="fas fa-sitemap mr-2"></i>ზოგადი არქიტექტურა
+            </h2>
+            <div class="bg-purple-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">MCP იყენებს client-server არქიტექტურას, სადაც host აპლიკაცია უკავშირდება მრავალ server-ს:</p>
+               
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-700 mb-2"><i class="fas fa-desktop mr-1"></i>MCP Hosts:</h4>
+                        <p class="text-sm text-gray-600">პროგრამები, როგორიცაა Claude Desktop, IDE-ები ან AI ხელსაწყოები, რომლებიც MCP-ის მეშვეობით აღწევენ მონაცემებს</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-700 mb-2"><i class="fas fa-plug mr-1"></i>MCP Clients:</h4>
+                        <p class="text-sm text-gray-600">პროტოკოლის კლიენტები, რომლებიც ინარჩუნებენ 1:1 კავშირებს server-ებთან</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-700 mb-2"><i class="fas fa-server mr-1"></i>MCP Servers:</h4>
+                        <p class="text-sm text-gray-600">მსუბუქი პროგრამები, რომლებიც ახდენენ სპეციფიური შესაძლებლობების გამოვლენას სტანდარტიზებული Model Context Protocol-ის მეშვეობით</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-700 mb-2"><i class="fas fa-database mr-1"></i>Local Data Sources:</h4>
+                        <p class="text-sm text-gray-600">კომპიუტერის ფაილები, მონაცემთა ბაზები და სერვისები, რომლებსაც უსაფრთხოდ აღწევენ MCP server-ები</p>
+                    </div>
+                </div>
+               
+                <div class="mt-4 bg-white p-4 rounded border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-700 mb-2"><i class="fas fa-cloud mr-1"></i>Remote Services:</h4>
+                    <p class="text-sm text-gray-600">გარე სისტემები (მაგ., API-ები), რომლებსაც MCP server-ები შეუძლიათ დაუკავშირდნენ ინტერნეტის მეშვეობით</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How MCP Changes AI Interaction -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-orange-700 mb-4 flex items-center">
+                <i class="fas fa-exchange-alt mr-2"></i>როგორ ცვლის MCP AI-ის ურთიერთქმედებას ხელსაწყოებთან
+            </h2>
+            <div class="bg-orange-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">
+                    ტრადიციული API-ებისგან განსხვავებით, რომლებიც ხშირად მოითხოვენ სპეციფიკურ იმპლემენტაციებს თითოეული სისტემისთვის, რომელთანაც AI agent ურთიერთქმედებს, MCP საშუალებას აძლევს AI agent-ებს გადაწყვიტონ რომელი ხელსაწყოები გამოიყენონ, რა რიგითობით და როგორ დააკავშირონ ისინი ერთმანეთთან ამოცანის შესასრულებლად, კონტექსტის საფუძველზე.
+                </p>
+                <p class="text-gray-700">
+                    ის ასევე ანერგებს human-in-the-loop შესაძლებლობებს, რაც საშუალებას აძლევს ადამიანებს მიაწოდონ დამატებითი მონაცემები და დაამტკიცონ შესრულება.
+                </p>
+            </div>
+        </section>
+
+        <!-- Popular Use Cases -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center">
+                <i class="fas fa-star mr-2"></i>პოპულარული გამოყენების შემთხვევები
+            </h2>
+            <div class="bg-indigo-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">MCP server-ების სწორი ნაკრებით, MCP კლიენტები შეიძლება გახდნენ "ყველაფრის აპლიკაციები". მაგალითები მოიცავს:</p>
+               
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-700 mb-2"><i class="fas fa-code mr-1"></i>Dev-centric workflow-ები:</h4>
+                        <p class="text-sm text-gray-600">დეველოპერებს შეუძლიათ გამოიყენონ MCP server-ები მონაცემთა ბაზებთან ურთიერთქმედებისთვის (მაგ., Postgres MCP server), cache index-ების მართვისთვის (მაგ., Upstash MCP server), ან live გარემოში კოდის debug-ისთვის (მაგ., Browsertools MCP) პირდაპირ მათი IDE-ებიდან.</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-700 mb-2"><i class="fas fa-lightbulb mr-1"></i>ახალი გამოცდილებები:</h4>
+                        <p class="text-sm text-gray-600">MCP კლიენტები, როგორიცაა Claude Desktop, MCP-ით გაძლიერებულ ხელსაწყოებს ხელმისაწვდომს ხდის არა-ტექნიკური მომხმარებლებისთვის. მოსალოდნელია სპეციალიზებული MCP კლიენტების გაჩენა ბიზნეს-ორიენტირებული ამოცანებისთვის.</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-700 mb-2"><i class="fas fa-cube mr-1"></i>Text-to-3D workflow-ები:</h4>
+                        <p class="text-sm text-gray-600">Blender MCP server საშუალებას აძლევს მომხმარებლებს აღწერონ 3D მოდელი ბუნებრივ ენაზე, რაც amateur მომხმარებლებს უძლურებას აძლევს შექმნან რთული მოდელები პროგრამული უზრუნველყოფის ღრმა ცოდნის გარეშე.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MCP vs API Comparison -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-red-700 mb-4 flex items-center">
+                <i class="fas fa-balance-scale mr-2"></i>MCP vs. API: მსგავსებები და განსხვავებები
+            </h2>
+            <div class="bg-red-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">
+                    მიუხედავად იმისა, რომ API-ები იყო ინტერნეტის პირველი დიდი გამაერთიანებელი, რომელმაც შექმნა საერთო ენა პროგრამული უზრუნველყოფის კომუნიკაციისთვის, AI მოდელებს არ ჰქონდათ ეკვივალენტი. MCP ავსებს ამ ნაკლოვანებას AI მოდელებისთვის გარე სისტემებთან ურთიერთქმედების სტანდარტიზებული გზის უზრუნველყოფით.
+                </p>
+               
+                <div class="overflow-x-auto">
+                    <table class="w-full bg-white rounded-lg shadow">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-bold text-gray-700">თვისება</th>
+                                <th class="px-4 py-3 text-left font-bold text-blue-600">API</th>
+                                <th class="px-4 py-3 text-left font-bold text-red-600">MCP</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3 font-semibold text-gray-700">მიზანი</td>
+                                <td class="px-4 py-3 text-sm">ზოგადი პროგრამული კომუნიკაცია</td>
+                                <td class="px-4 py-3 text-sm">სტანდარტიზებული კონტექსტის მიწოდება და ხელსაწყოების ურთიერთქმედება AI მოდელებისთვის</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-3 font-semibold text-gray-700">მოქნილობა</td>
+                                <td class="px-4 py-3 text-sm">მოითხოვს სპეციფიკურ იმპლემენტაციებს</td>
+                                <td class="px-4 py-3 text-sm">საშუალებას აძლევს AI agent-ებს დინამიურად აირჩიონ და დააკავშირონ ხელსაწყოები</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold text-gray-700">ინტელექტი</td>
+                                <td class="px-4 py-3 text-sm">პასიური კომუნიკაცია</td>
+                                <td class="px-4 py-3 text-sm">უჭერს მხარს ავტონომიურ AI workflow-ებს კონტექსტ-ცნობიერი გადაწყვეტილების მიღებით</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-3 font-semibold text-gray-700">Human-in-the-loop</td>
+                                <td class="px-4 py-3 text-sm">ჩვეულებრივ არ არის ჩაშენებული</td>
+                                <td class="px-4 py-3 text-sm">ინტეგრირებს ადამიანის დამტკიცებას და მონაცემების მიწოდებას</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold text-gray-700">ეკოსისტემა</td>
+                                <td class="px-4 py-3 text-sm">მომწიფებული, ფართო სპექტრის სერვისები</td>
+                                <td class="px-4 py-3 text-sm">ვითარდება, marketplace-ების და server-hosting გადაწყვეტილებების მზარდი ნაკრებით</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open-Source MCP Services -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-teal-700 mb-4 flex items-center">
+                <i class="fab fa-osi mr-2"></i>ღია კოდის MCP სერვისები
+            </h2>
+            <div class="bg-teal-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">
+                    Model Context Protocol (MCP) ეკოსისტემა სწრაფად იზრდება, არაერთი ღია კოდის MCP server-ით, რომლებიც აფართოებენ AI შესაძლებლობებს სხვადასხვა ინტეგრაციების მეშვეობით.
+                </p>
+               
+                <h3 class="text-lg font-bold text-teal-700 mb-3">პოპულარული ღია კოდის MCP Server-ები და პლატფორმები:</h3>
+               
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-700 mb-2"><i class="fas fa-globe mr-1"></i>Glama.ai/mcp/servers:</h4>
+                        <p class="text-sm text-gray-600">ეს პლატფორმა აჩვენებს production-ready MCP server-ებს, კატეგორიზებულს მათი ფუნქციონალობის მიხედვით.</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-700 mb-2"><i class="fas fa-list mr-1"></i>mcpservers.org:</h4>
+                        <p class="text-sm text-gray-600">ეს საიტი უზრუნველყოფს ღია კოდის MCP server-ების კურირებულ სიას, database ხელსაწყოებისა და search engine-ების ჩათვლით.</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-700 mb-2"><i class="fab fa-github mr-1"></i>GitHub repositories:</h4>
+                        <p class="text-sm text-gray-600">ეს repositories ხშირად აკრიბებენ სხვადასხვა ღია კოდის MCP server-ების სიებს.</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-700 mb-2"><i class="fas fa-cogs mr-1"></i>Activepieces.com/mcp:</h4>
+                        <p class="text-sm text-gray-600">ეს პლატფორმა გთავაზობთ ღია კოდის MCP-ების დიდ კოლექციას (280-ზე მეტს).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VS Code Integration -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4 flex items-center">
+                <i class="fas fa-code mr-2"></i>როგორ ინტეგრირდეს MCP სერვისი VS Code-ში კოდირებისთვის
+            </h2>
+            <div class="bg-blue-50 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4">
+                    Visual Studio Code (VS Code) თავაზობს MCP-ის ძლიერ მხარდაჭერას, რაც აუმჯობესებს GitHub Copilot-ის agent რეჟიმს.
+                </p>
+               
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-700 mb-2"><i class="fas fa-list-check mr-1"></i>მოთხოვნები:</h4>
+                        <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                            <li>Visual Studio Code-ის უახლესი ვერსია</li>
+                            <li>GitHub Copilot-ზე წვდომა</li>
+                        </ul>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-700 mb-2"><i class="fas fa-toggle-on mr-1"></i>MCP მხარდაჭერის ჩართვა:</h4>
+                        <p class="text-sm text-gray-600">MCP მხარდაჭერა agent რეჟიმში ამჟამად preview-ში არის. ჩასართავად, გააქტიურეთ chat.mcp.enabled setting.</p>
+                    </div>
+                   
+                    <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-700 mb-2"><i class="fas fa-plus mr-1"></i>MCP Server-ის დამატება:</h4>
+                        <p class="text-sm text-gray-600 mb-2">რამდენიმე გზა არსებობს MCP server-ის VS Code-ში დასამატებლად:</p>
+                        <ul class="text-sm text-gray-600 list-disc list-inside space-y-1 ml-4">
+                            <li>Workspace settings: შექმენით .vscode/mcp.json ფაილი</li>
+                            <li>User settings: მიუთითეთ server თქვენს user settings-ში</li>
+                            <li>Automatic discovery: ჩართეთ MCP server-ების autodiscovery</li>
+                        </ul>
+                    </div>
+                </div>
+               
+                <div class="mt-6 bg-gray-100 p-4 rounded">
+                    <h4 class="font-bold text-gray-700 mb-2"><i class="fas fa-file-code mr-1"></i>კონფიგურაციის მაგალითი (.vscode/mcp.json):</h4>
+                    <pre class="text-sm text-gray-600 bg-white p-3 rounded border overflow-x-auto"><code>{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "perplexity-key",
+      "description": "Perplexity API Key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "Perplexity": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "server-perplexity-ask"],
+      "env": {
+        "PERPLEXITY_API_KEY": "${input:perplexity-key}"
+      }
+    }
+  }
+}</code></pre>
+                </div>
+               
+                <div class="mt-4 bg-yellow-100 border-l-4 border-yellow-500 p-4">
+                    <p class="text-sm text-yellow-800">
+                        <i class="fas fa-exclamation-triangle mr-1"></i>
+                        <strong>მნიშვნელოვანი:</strong> თავიდან აიცილეთ API key-ების მსგავსი მგრძნობიარე ინფორმაციის პირდაპირ კოდირება კონფიგურაციაში.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="border-t-2 border-gray-300 pt-6 mt-8">
+            <div class="text-center text-gray-600">
+                <p class="mb-2">
+                    <i class="fas fa-info-circle mr-1"></i>
+                    ეს დოკუმენტი არის Model Context Protocol (MCP) შესავლის ქართული თარგმანი
+                </p>
+                <p class="text-sm">
+                    ტექნიკური ტერმინები და მნიშვნელოვანი სახელები შენარჩუნებულია ინგლისურ ენაზე
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
