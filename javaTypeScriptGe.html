@@ -116,7 +116,7 @@
                         <p class="text-gray-600 mb-4">ძირითადი კონცეფციები და სინტაქსი</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>9 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>12 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                         <p class="text-gray-600 mb-4">ძირითადი კონცეფციები და სინტაქსი</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>4 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>12 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                         <p class="text-gray-600 mb-4">რთული კონცეფციები და შაბლონები</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>15 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>10 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>13 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                         <p class="text-gray-600 mb-4">ტიპები და ძირითადი გამოყენება</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>7 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>12 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                         <p class="text-gray-600 mb-4">ტიპები და ძირითადი გამოყენება</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>7 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>12 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                         <p class="text-gray-600 mb-4">მოწინავე ტიპები და არქიტექტურა</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>15 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>10 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>12 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -923,6 +923,14 @@ x = "გამარჯობა"; // შეცდომა არაა`,
                     question:"როგორ განისაზღვრება ფუნქციის ტიპი TypeScript-ში?",
                     code:`let add: (a: number, b: number) => number;
 add = function(x: number, y: number): number { return x + y; };`,
+                    options:[
+                        "განსაზღვრება ფუნქციის პარამეტრების და რეტურნის ტიპების საშუალებით",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ფუნქციის ტიპი განსაზღვრება შეიძლება განსაზღვრავი სინტაქსით."
                 },
                 {
                     question: "რა არის TypeScript-ის ძირითადი მიზანი?",
@@ -936,9 +944,156 @@ message = 42; // შეცდომა`,
                     ],
                     correct: 0,
                     explanation: "TypeScript ამატებს static typing-ს JavaScript-ში."
-                }
+                },
+                {
+                    question: "რა არის TypeScript-ის შესაძლებლობა, რომელიც JavaScript-ში არ არსებობს?",
+                    code: `// რა არის სწორი სინტაქსი?
+a) let message: string = 'Hello';
+b) let message = 'Hello';
+c) var message: string = 'Hello';
+d) const message = 'Hello';`,
+                    options: [
+                        "a) let message: string = 'Hello';",
+                        "b) let message = 'Hello';",
+                        "c) var message: string = 'Hello';",
+                        "d) const message = 'Hello';"
+                    ],
+                    correct: 0,
+                    explanation: "TypeScript-ში შეგვიძლია განსაზღვროთ ცვლადის type, რაც  JavaScript-ში არ არსებობს."
+                },
+                {
+                    question:"რა არის ინტერფეისი TypeScript-ში?",
+                    code:`interface Person {
+    name: string;
+}
+let person: Person = { name: "ანა" };`,
+                    options:[
+                        "ობიექტის სტრუქტურის განსაზღვრის კონტრაქტი",
+                        "კლასის ჩანაცვლება",
+                        "გაშვების დროის ტიპის შემოწმება",
+                        "JavaScript ობიექტი"
+                    ],
+                    correct: 0,
+                    explanation: "ინტერფეისი განსაზღვრავს არსებითადი კლასის ან ფუნქციის სინტაქსის გზას."
+                },
+                {
+                    question:"რას აკეთებს any ტიპი?",
+                    code:`let x: any;
+x = 42;
+x = "გამარჯობა"; // შეცდომა არაა`,
+                    options:[
+                        "გამორთავს ტიპის შემოწმებას",           
+                        "აძლიერებს მკაცრ ტიპიზაციას",
+                        "მხოლოდ პრიმიტივებს ნებადართავს",
+                        "აგდებს შეცდომებს"
+                    ],
+                    correct:0,
+                    explanation:"any ტიპი ნებადართავს ნებისმიერ მნიშვნელობას, გვერდს უვლის ტიპის შემოწმებას."
+                },
+                {
+                    question:"რა არის უცნობი ტიპი?",
+                    code:`let x: unknown;
+x = 42;
+x = "გამარჯობა"; // OK
+console.log(x.toUpperCase()); // შეცდომა`,
+                    options:[   
+                        "ნებადართავს ნებისმიერ მნიშვნელობას, გვერდს უვლის ტიპის შემოწმებას",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არსებობს",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "უცნობი ტიპი ნებადართავს ნებისმიერ მნიშვნელობას, მაგრამ გვერდს უვლის ტიპის შემოწმებას."
+                },
+                {
+                    question:"რა არის ტიპის აღწერა?",
+                    code:`type Point = { x: number; y: number };
+let p: Point = { x: 1, y: 2 };`,
+                    options:[
+                        "აღწერს ტიპს სინტაქსით",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ტიპის აღწერა არის ტიპის განსაზღვრა სინტაქსით."
+                },
             ],
             tsMedium: [
+                {
+                    question: "რა არის გენერიკული ტიპები?",
+                    code:`function identity<T>(arg: T): T {
+    return arg;
+}
+let x = identity(42); // x არის number-ის ტიპი`,
+                    options:[
+                        "განსაზღვრავს ფუნქციის პარამეტრების და რეტურნის ტიპებს",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "გენერიკული ტიპები არის ტიპები, რომლებიც შეიძლება იყოს ნებისმიერი ტიპი."
+                },
+                {
+                    question: "რა არის ტიპის მომართვა (type assertion)?",
+                    code:`let x: any = "გამარჯობა";
+let len: number = (x as string).length;`,
+                    options:[
+                        "განსაზღვრავს ტიპს სინტაქსით",  
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ტიპის მომართვა არის საშუალება, რომელიც საშუალებას იძლევა დეველოპერმა TypeScript-ს უთხრათ ცვლადის type."
+                },
+                {
+                    question: "რა არის ინტერფეისი?",
+                    code:`interface Person {
+    name: string;
+    age: number;
+}
+let person: Person = { name: "ანა", age: 25 };`,
+                    options:[
+                        "არსებითადი კლასის ან ფუნქციის სინტაქსის გზას განსაზღვრავს",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ინტერფეისი განსაზღვრავს არსებითადი კლასის ან ფუნქციის სინტაქსის გზას."
+                },
+                {
+                    question: "რა არის ენამები?",
+                    code:`enum Color {
+    Red,
+    Green,
+    Blue
+}
+let c: Color = Color.Green;`,
+                    options:[
+                        "მნიშვნელობების სიას განსაზღვრავს",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ენამი არის მნიშვნელობების სია, რომლებიც მიიღებენ ავტომატურად მნიშვნელობებს."
+                },
+                {
+                    question: "რა არის ტიპის მომართვა (type assertion)?",
+                    code:`let x: any = "გამარჯობა";
+let len: number = (x as string).length;`,
+                    options:[
+                        "განსაზღვრავს ტიპს სინტაქსით",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ტიპის მომართვა არის საშუალება, რომელიც საშუალებას იძლევა დეველოპერმა TypeScript-ს უთხრათ ცვლადის type."
+                },
                 {
                     question: "რა არის ტიპის დაცვა (Type Guards)?",
                     code:`function isString(value: any): value is string {
@@ -1069,6 +1224,38 @@ console.log(getLength(42)); // შეცდომა`,
                 }
             ],
             tsAdvanced: [
+                {
+                    question: "რა არის keyof operator?",
+                    code: `interface User {
+    name: string;
+    age: number;
+}
+type UserKeys = keyof User; // 'name' | 'age'`,
+                    options: [
+                        "keyof operator აღწერს ინტერფეისის ან ტიპის properties-ებს",
+                        "keyof operator მხოლოდ arrays-თან მუშაობს",
+                        "keyof operator არ არის TypeScript-ის ნაწილი",
+                        "keyof operator არ არსებობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "keyof operator აღწერს ინტერფეისის ან ტიპის properties-ებს."
+                },
+                {
+                    question: "რა არის Indexed Access Types?",
+                    code: `interface User {
+    name: string;
+    age: number;
+}
+type UserName = User['name']; // string`,
+                    options: [
+                        "Indexed Access Types აღწერს ინტერფეისის ან ტიპის properties-ების ტიპს",
+                        "Indexed Access Types მხოლოდ arrays-თან მუშაობს",
+                        "Indexed Access Types არ არის TypeScript-ის ნაწილი",
+                        "Indexed Access Types არ არსებობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "Indexed Access Types აღწერს ინტერფეისის ან ტიპის properties-ების ტიპს."
+                },
                 {
                     question: "რა არის Structural Typing?",
                     code: `interface Person {
