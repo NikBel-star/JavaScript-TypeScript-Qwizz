@@ -116,7 +116,7 @@
                         <p class="text-gray-600 mb-4">ძირითადი კონცეფციები და სინტაქსი</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>13 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>9 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                         <p class="text-gray-600 mb-4">ძირითადი კონცეფციები და სინტაქსი</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>5 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>4 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                         <p class="text-gray-600 mb-4">რთული კონცეფციები და შაბლონები</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>15 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>8 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>10 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                         <p class="text-gray-600 mb-4">ტიპები და ძირითადი გამოყენება</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>14 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>7 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                         <p class="text-gray-600 mb-4">ტიპები და ძირითადი გამოყენება</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>10 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>8 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>7 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                         <p class="text-gray-600 mb-4">მოწინავე ტიპები და არქიტექტურა</p>
                         <div class="flex justify-center space-x-4 text-sm text-gray-500">
                             <span><i class="fas fa-clock mr-1"></i>15 წუთი</span>
-                            <span><i class="fas fa-question-circle mr-1"></i>13 კითხვა</span>
+                            <span><i class="fas fa-question-circle mr-1"></i>10 კითხვა</span>
                         </div>
                     </div>
                 </div>
@@ -295,6 +295,162 @@
         const quizData = {
             jsBeginner: [
                 {
+                    question:"რა არის JavaScript-ის მთავარი დანიშნულება?",
+                    code: `// რომელია სწორი?
+a) JavaScript არის statically typed language
+b) JavaScript არის dynamically typed language
+c) JavaScript არის interpreted language
+d) JavaScript არის compiled language`,
+                    options: [
+                        "a) JavaScript არის statically typed language",
+                        "b) JavaScript არის dynamically typed language",
+                        "c) JavaScript არის interpreted language",
+                        "d) JavaScript არის compiled language"
+                    ],
+                    correct: 1,
+                    explanation: "JavaScript არის dynamically typed language, რაც ნიშნავს, რომ ცვლადების ტიპები არის განსაზღვრული დადგენილებით."
+                },
+                {
+                    question:"რა არის JavaScript-ის შესაძლებლობა, რომელიც TypeScript-ში არ არსებობს?",
+                    code: `// რა არის სწორი სინტაქსი?
+a) let message: string = 'Hello';
+b) let message = 'Hello';
+c) var message: string = 'Hello';
+d) const message = 'Hello';`,
+                    options: [
+                        "a) let message: string = 'Hello';",
+                        "b) let message = 'Hello';",
+                        "c) var message: string = 'Hello';",
+                        "d) const message = 'Hello';"
+                    ],
+                    correct: 1,
+                    explanation: "JavaScript-ში არ შეგვიძლია განსაზღვროთ ცვლადის type, რაც არის TypeScript-ის შესაძლებლობა."
+                },
+                {
+                    question: "რა განსხვავებაა JavaScript-ში var-სა და let-ს შორის?",
+                    code: `var x = 1;
+let y = 2;
+{
+    var x = 3;
+    let y = 4;
+    console.log(x, y); // ?
+}
+console.log(x, y); // ?`,
+                    options: [
+                        "var ქმნის ფუნქციურ სკოპს, let კი ბლოკურ სკოპს",
+                        "let ქმნის ფუნქციურ სკოპს, var კი ბლოკურ სკოპს",
+                        "ორივე იდენტურია",
+                        "var უფრო სწრაფია let-ზე"
+                    ],
+                    correct: 0,
+                    explanation: "var ქმნის ფუნქციურ ან გლობალურ სკოპს, ხოლო let ქმნის ბლოკურ სკოპს. ამ მაგალითში console.log(x, y) გამოიტანს 3, 4, ხოლო მეორე console.log(x, y) გამოიტანს 3, 2."
+                },
+                {
+                    question: "რას გამოიტანს console.log(typeof null)?",
+                    code: `console.log(typeof null);`,
+                    options: [
+                        '"object"',
+                        '"null"',
+                        '"undefined"',
+                        '"string"'
+                    ],
+                    correct: 0,
+                    explanation: "JavaScript-ში typeof null აბრუნებს 'object', რაც ისტორიული შეცდომაა."
+                },
+                {
+                    question: "რა არის JavaScript-ის ფუნქციის განსაზღვრის სწორი გზა?",
+                    code: `// რომელია სწორი?
+a) function myFunc() {}
+b) var myFunc = function() {}
+c) let myFunc = () => {}
+d) ყველა სწორია`,
+                    options: [
+                        "d) ყველა სწორია",
+                        "a) მხოლოდ function declaration",
+                        "b) მხოლოდ function expression",
+                        "c) მხოლოდ arrow function"
+                    ],
+                    correct: 0,
+                    explanation: "JavaScript-ში ფუნქციის განსაზღვრა შესაძლებელია function declaration-ით, function expression-ით, ან arrow function-ით. ყველა ვარიანტი სწორია."
+                },
+                {
+                    question: "რა არის JavaScript-ის მასივის სიგრძის თვისება?",
+                    code: `let arr = [1, 2, 3];
+console.log(arr.length); // ?`,
+                    options: [
+                        "3",
+                        "2",
+                        "4",
+                        "undefined"
+                    ],
+                    correct: 0,
+                    explanation: "მასივის length თვისება აბრუნებს ელემენტების რაოდენობას. ამ შემთხვევაში arr.length = 3."
+                },
+                {
+                   question: "როგორ მუშაობს JavaScript-ში == და ===?",
+                   code: `console.log(1 == '1'); // ?
+console.log(1 === '1'); // ?`,
+                   options: [
+                        "true, false",
+                        "false, true",
+                        "true, true",
+                        "false, false"
+                    ],
+                    correct: 0,
+                    explanation: "== ახდენს type coercion-ს, ამიტომ 1 == '1' არის true. === ამოწმებს ტიპსაც, ამიტომ 1 === '1' არის false."
+                },
+                {
+                    question: "რა არის JavaScript-ის undefined?",
+                    code: `let x;
+console.log(x); // ?`,
+                    options: [
+                        "undefined",
+                        "null",
+                        "0",
+                        "Error"
+                    ],
+                    correct: 0,
+                    explanation: "განუსაზღვრელი ცვლადი JavaScript-ში აბრუნებს undefined."
+                },
+                {
+                    question: "რას გამოიტანს console.log(!!'false')?",
+                    code: `console.log(!!'false'); // ?`,
+                    options: [
+                        "true",
+                        "false",
+                        "undefined",
+                        "Error"
+                    ],
+                    correct: 0,
+                    explanation: "!! გარდაქმნის მნიშვნელობას boolean-ად. 'false' (როგორც არა-ცარიელი სტრიქონი) არის truthy, ამიტომ !!'false' = true."
+                },
+                {
+                    question: "რა არის JavaScript-ის forEach მეთოდის დანიშნულ?",
+                    code: `let numbers = [1, 2, 3];
+numbers.forEach(num => console.log(num));`,
+                    options: [
+                        "არის მასივის ელემენტების იტერაციის მეთოდი",
+                        "არის მასივის ელემენტების გაფილტვრის მეთოდი",
+                        "არის მასივის ელემენტების ამატების მეთოდი",
+                        "არის მასივის ელემენტების გამოყოფის მეთოდი"
+                    ],
+                    correct: 0,
+                    explanation: "forEach მეთოდი არის მასივის ელემენტების იტერაციის მეთოდი."
+                },
+                {
+                    question: "რა არის JavaScript-ის შესაძლებლობა, რომელიც TypeScript-ში არ არსებობს?",
+                    code: `// რა არის სწორი სინტაქსი?
+let message: string = 'Hello';`,
+                    options: [  
+                        "JavaScript-ში შეგვიძლია განსაზღვროთ ცვლადის type",
+                        "JavaScript-ში შეგვიძლია განსაზღვროთ ცვლადის scope",
+                        "JavaScript-ში შეგვიძლია განსაზღვროთ ცვლადის value",
+                        "JavaScript-ში შეგვიძლია განსაზღვროთ ცვლადის name"
+                    ],
+                    correct: 0,
+                    explanation: "JavaScript-ში არ შეგვიძლია განსაზღვროთ ცვლადის type."
+                },
+                {
                     question: "რა არის JavaScript-ში var-ისა და let-ის ძირითადი განსხვავება?",
                     code: `var x = 1;
 let y = 2;
@@ -316,8 +472,9 @@ console.log(x, y); // ?`,
             ],
             jsMedium: [
                 {
-                    question: "რა არის callback function-ი?",
-                    code: `function doSomething(callback) {
+                    question:`რა არის callback ფუნქცია?`,
+                    code:`function doSomething(callback) {
+    // რაღაც ლო직ი
     callback();
 }
 doSomething(function() {
@@ -325,15 +482,352 @@ doSomething(function() {
 });`,
                     options: [
                         "ფუნქცია, რომელიც გადაეცემა სხვა ფუნქციას",
-                        "ფუნქცია, რომელიც არ არის გადასაცემი",
-                        "ფუნქცია, რომელიც არ არის არგუმენტი",
-                        "ფუნქცია, რომელიც არ არის ფუნქცია"
+                        "ფუნქცია, რომელსაც არ აქვს არგუმენტები",
+                        "ფუნქცია, რომელიც არ არის ფუნქცია",
+                        "ფუნქცია, რომელიც აბრუნებს null"
                     ],
                     correct: 0,
                     explanation: "Callback function-ი გადაეცემა სხვა ფუნქციას არგუმენტად."
-                }
+                },
+                {
+                    question:"რას აკეთებს Promise.resolve(42).then(x => x * 2).then(console.log)?",
+                    code:`Promise.resolve(42).then(x => x * 2).then(console.log); // ?`,
+                    options:[
+                        "84",
+                        "42",
+                        "Error",
+                        "undefined"
+                    ],
+                    correct: 0,
+                    explanation: "Promise.resolve(42) აბრუნებს 42-ს, .then(x => x * 2) ამრავლებს 2-ზე (გამოდის 84), და console.log გამოიტანს 84-ს."
+                },
+                {
+                    question:"რა არის Array.prototype.filter()-ის დანიშნულება?",
+                    code:`let arr = [1, 2, 3, 4];
+let result = arr.filter(x => x % 2 === 0);
+console.log(result); // ?`,
+                    options:[
+                        "[2, 4]",
+                        "[1, 3]",
+                        "[1, 2, 3, 4]",
+                        "[ შეცდომა]"
+                    ],
+                    correct: 0,
+                    explanation:"filter() აბრუნებს ახალ მასივს, რომელიც შეიცავს ელემენტებს, რომლებიც აკმაყოფილებენ პირობას."
+                },
+                {
+                    question: "რა არის spread ოპერატორი?",
+                    code: `let arr1 = [1, 2];
+let arr2 = [...arr1, 3];
+console.log(arr2); // ?`,
+                    options: [
+                        "[1, 2, 3]",
+                        "[1, 2]",
+                        "3",
+                        "შეცდომა"
+                    ],
+                    correct: 0,
+                    explanation: "spread ოპერატორი (...) კოპირებს მასივის ელემენტებს ახალ მასივში."
+                },
+                {
+                    question:" რა არის Array.prototype.map()-ის დანიშნულება?",
+                    code: `let arr = [1, 2, 3];
+let result = arr.map(x => x * 2);
+console.log(result); // ?`,
+                    options: [
+                        "[2, 4, 6]",
+                        "[1, 2, 3]",
+                        "[1, 4, 9]",
+                        "შეცდომა"
+                    ],
+                    correct: 0,
+                    explanation: "map() აბრუნებს ახალ მასივს, რომელიც შეიცავს ელემენტებს, რომლებიც არის ფუნქციის გამოარჩევებით."
+                },
+                {
+                    question:"რა არის Array.prototype.reduce()-ის დანიშნულება?",
+                    code: `let arr = [1, 2, 3];
+let result = arr.reduce((acc, x) => acc + x, 0);
+console.log(result); // ?`,
+                    options: [
+                        "6",
+                        "1",
+                        "3",
+                        "შეცდომა"
+                    ],
+                    correct: 0,
+                    explanation: "reduce() აბრუნებს ერთ მნიშვნელობას, რომელიც არის არგუმენტების ფუნქციის გამოარჩევებით."    
+                },
+                {
+                    question:"რა არის Array.prototype.forEach()-ის დანიშნულება?",
+                    code: `let arr = [1, 2, 3];
+arr.forEach(x => console.log(x)); // ?`,
+                    options: [
+                        "1, 2, 3",
+                        "3, 2, 1",
+                        "1, 1, 1",
+                        "შეცდომა"  
+                    ],
+                    correct: 0,
+                    explanation: "forEach() იტერაციას აკეთებს მასივის ელემენტებზე და არ აბრუნებს მნიშვნელობას." 
+                },
+                {
+                    ქუესტიონ:"რა არის ასინქრონული კოდი?",
+                    code: `console.log('1');
+setTimeout(() => console.log('2'), 0);
+console.log('3'); // ?`,
+                    options: [
+                        "1, 2, 3",
+                        "3, 2, 1",
+                        "1, 3, 2",
+                        "შეცდომა"
+                    ],
+                    correct: 2,
+                    explanation: "setTimeout არის ასინქრონული ფუნქცია, რომელიც დასრულება მეორე ციკლში."
+                },
+                {
+                    question:"რა არის Promise?",
+                    code: `let p = new Promise((resolve, reject) => {
+    // რაღაც ლოგიკა
+    resolve('მარაგი');
+});
+p.then(result => console.log(result)); // ?`,
+                    options: [
+                        "მარაგი",
+                        "შეცდომა",
+                        "undefined",
+                        "null"
+                    ],
+                    correct: 0,
+                    explanation: "Promise არის ასინქრონული კოდის შემდეგ ამოძალური მნიშვნელობა."
+                },
+                {
+                    question:"რა არის async/await?",
+                    code: `async function myFunc() {
+    return 'მარაგი';
+}
+myFunc().then(result => console.log(result)); // ?`,
+                    options: [
+                        "მარაგი",
+                        "შეცდომა",
+                        "undefined",
+                        "null"
+                    ],
+                    correct: 0,
+                    explanation: "async/await არის syntactic sugar Promise-ებისთვის."
+                },
+                {
+                    question:" რა არის AJAX?",
+                    code: `// რა არის სწორი?
+a) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს
+b) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას არ აძლევს 
+c) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ ბრაუზერში
+d) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ სერვერზე`,
+                    options: [
+                        "a) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს",         
+                        "b) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას არ აძლევს",
+                        "c) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ ბრაუზერში",
+                        "d) AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ სერვერზე"
+                    ],
+                    correct: 0,
+                    explanation: "AJAX არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ ბრაუზერში."
+                },
+                {
+                    question:"რა არის CORS?",
+                    code: `// რა არის სწორი?
+a) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს
+b) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას არ აძლევს
+c) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ ბრაუზერში
+d) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ სერვერზე`,
+                    options: [
+                        "a) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს",
+                        "b) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას არ აძლევს",
+                        "c) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ ბრაუზერში",
+                        "d) CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ სერვერზე"
+                    ],
+                    correct: 0,
+                    explanation: "CORS არის ტექნიკა, რომელიც ასინქრონული კოდის შესაძლებლობას აძლევს მხოლოდ ბრაუზერში."
+                },
             ],
             jsAdvanced: [
+                {
+                    question:"რა არის დახურვა (closure)?",
+                    code:`function outerFunction(x) {
+    return function innerFunction(y) {
+        return x + y;
+        };
+}
+const addFive = outerFunction(5);
+console.log(addFive(3)); // ?`,
+                    options:[
+                        "8 - დახურვა ინარჩუნებს გარე სკოპის ცვლადებს",
+                        "შეცდომა - x განუსაზღვრელია",
+                        "undefined",
+                        "3"
+                    ],
+                    correcr:0,
+                    explanation:"დახურვა საშუალებას აძლევს შიდა ფუნქციას წვდომა ჰქონდეს გარე ფუნქციის ცვლადებზე."
+                },
+                {
+                    question:"რა არის მოვლენების ციკლი (event loop)?",
+                    code:`console.log('1');
+setTimeout(() => console.log('2'), 0);
+Promise.resolve().then(() => console.log('3'));
+console.log('4'); // ?`,
+                    options:[
+                        "1, 4, 3, 2",
+                        "1, 2, 4, 3",
+                        "1, 3, 4, 2",
+                        "2, 3, 4, 1"
+                    ],
+                    correct:2,
+                    explanation: "მოვლენების ციკლი ჯერ ასრულებს სინქრონულ კოდს (1, 4), შემდეგ მიკროდავალებებს (3), და ბოლოს მაკროდავალებებს (2)."
+                },
+                {
+                    question:" რას აკეთებს Object.create(null)?",
+                    code:`let obj = Object.create(null);
+console.log(obj.__proto__); // ?`,
+                    options: [
+                        "undefined",
+                        "{}",
+                        "Object.prototype",
+                        "null"
+                    ],
+                    correct:3,
+                    explanation: "Object.create(null) ქმნის ობიექტს პროტოტიპის გარეშე."
+                 },
+                 {
+                    question:"რა არის ასინქრონული კოდი?",
+                    code:`console.log('1');
+setTimeout(() => console.log('2'), 0);
+console.log('3'); // ?`,
+                    options: [
+                        "1, 2, 3",
+                        "1, 3, 2",
+                        "2, 1, 3",
+                        "3, 1, 2"
+                    ],
+                    correct:1,
+                    explanation: "setTimeout არის ასინქრონული ფუნქცია, რომელიც დასრულება მეორე ციკლში."
+                 },
+                 {
+                    question:"რა არის გენერატორის ფუნქცია?",
+                    code:`function* myGen() {
+    yield 1;
+    yield 2;
+}
+const gen = myGen();
+console.log(gen.next()); // ?`,
+                    options:[
+                        "{ value: 1, done: false }",
+                        "1",
+                        "{ value: 2, done: false }",
+                        "შეცდომა"
+                    ],
+                    correct:0,
+                    explanation: "გენერატორი აბრუნებს მნიშვნელობებს ერთჯერადად, next() აბრუნებს { value, done } ობიექტს."
+                 },
+                 {
+                    question:"რა არის ES6-ის Symbol-ის დანიშნულება?",
+                    code:`const sym = Symbol('id');
+let obj = { [sym]: 42 };
+console.log(obj[sym]); // ?`,
+                    options:[
+                        "42",
+                        "undefined",
+                        "Error",
+                        "Symbol('id')"
+                    ],
+                    correct:0,
+                    explanation: "Symbol-ები უნიკალური მნიშვნელობებია, რომლებიც გამოიყენება ობიექტის unique property-ების შესაქმნელად."
+                 },
+                 {
+                    question:"რას აკეთებს Array.prototype.flat()?",
+                    code:`let arr = [1, [2, [3]]];
+console.log(arr.flat()); // ?`,
+                    options:[
+                        "[1, 2, [3]]",
+                        "[1, 2, 3]",
+                        "[1, [2, 3]]",
+                        "შეცდომა"
+                    ],
+                    correct:2,
+                    explanation: "flat() ამოიღებს მასივიდან შეშრობულ ელემენტებს და აბრუნებს ახალ მასივს."
+                 },
+                 {
+                    question:"რა არის Proxy JavaScript-ში?",
+                    code:`let target = { a: 1 };
+let handler = { get(target, prop) { return target[prop] * 2; } };
+let proxy = new Proxy(target, handler);
+console.log(proxy.a); // ?`,
+                    options:[
+                        "2",
+                        "1",
+                        "undefined",
+                        "Error"
+                    ],
+                    correct:0,  
+                    explanation: "Proxy საშუალებას გაძლევთ გააკონტროლოთ ობიექტის ოპერაციები, მაგ. თვისებებზე წვდომა."
+                 },
+                 {
+                    question:"რას აკეთებს Reflect.getOwnPropertyDescriptor?",
+                    code:`let obj = { a: 42 };
+let desc = Reflect.getOwnPropertyDescriptor(obj, 'a');
+console.log(desc.value); // ?`,
+                    options:[
+                        "42",
+                        "undefined",
+                        "Error",
+                        "null"
+                    ],
+                    correct:0,
+                    explanation: "Reflect.getOwnPropertyDescriptor აბრუნებს ობიექტის თვისების აღწერას."
+                 },
+                 {
+                    question:" რა აკეთებს Object.assign?",
+                    code:`let target = { a: 1 };
+let source = { b: 2 };
+let result = Object.assign(target, source);
+console.log(result); // ?`,
+                    options:[
+                        "{ a: 1, b: 2 }",
+                        "{ b: 2 }",
+                        "{ a: 1 }",
+                        "შეცდომა"
+                    ],
+                    correct:0,
+                    explanation: "Object.assign აკოპირებს ერთი არგუმენტიდან მეორეში."
+                 },
+                 {
+                    question:" რას აკეთებს Object.freeze?",
+                    code:`let obj = { a: 1 };
+Object.freeze(obj);
+obj.a = 2;
+console.log(obj.a); // ?`,
+                    options:[
+                        "2",
+                        "1",
+                        "undefined",
+                        "Error"
+                    ],
+                    correct:3,
+                    explanation: "Object.freeze არ არის writable და არ არის configurable."
+                 },
+                 {
+                    question:"რა დანიშნულება აქვს Typescript-ს?",
+                    code:`// რა არის სწორი სინტაქსი?
+a) let message: string = 'Hello';
+b) let message = 'Hello';
+c) var message: string = 'Hello';
+d) const message = 'Hello';`,
+                    options:[
+                        "a) let message: string = 'Hello';",
+                        "b) let message = 'Hello';",
+                        "c) var message: string = 'Hello';",
+                        "d) const message = 'Hello';"
+                    ],
+                    correct:0,
+                    explanation: "Typescript-ში შეგვიძლია განსაზღვროთ ცვლადის type."
+                 },
                 {
                     question: "რა არის closure?",
                     code: `function outerFunction(x) {
@@ -354,6 +848,82 @@ console.log(addFive(3)); // ?`,
                 }
             ],
             tsBeginner: [
+
+                {
+                    question: "რა არის TypeScript-ის მთავარი დანიშნულება?",
+                    code:`let message: string = 'გამარჯობა';
+message = 42; // შეცდომა`,
+                    options:[
+                        "TypeScript არის statically typed language",
+                        "TypeScript არის dynamically typed language",
+                        "TypeScript არის interpreted language",
+                        "TypeScript არის compiled language"
+                    ],
+                    correct: 0,
+                    explanation: "TypeScript არის statically typed language, რაც ნიშნავს, რომ ცვლადების ტიპები არის განსაზღვრული დადგენილებით."
+                },
+                {
+                    question:"რა არის გაერთიანების ტიპი (union type)?",
+                    code:`let x: number | string;
+x = 42; // OK
+x = "გამარჯობა"; // OK
+x = true; // შეცდომა`,
+                    options:[
+                        "ცვლადისთვის მრავალი ტიპის ნებართვა",
+                        "ერთი ტიპის შეზღუდვა",
+                        "მხოლოდ ობიექტებისთვის",
+                        "არაა მხარდაჭერილი"
+                    ],
+                    correct:0,
+                    explanation: "გაერთიანების ტიპი საშუალებას აძლევს ცვლადს ჰქონდეს რამდენიმე ტიპი."
+                },
+                {
+                    question:"რა არის TypeScript-ის შესაძლებლობა, რომელიც JavaScript-ში არ არსებობს?",
+                    code:`let message: string = 'Hello';
+message = 42; // შეცდომა`,
+                    options:[
+                        "TypeScript-ში შეგვიძლია განსაზღვროთ ცვლადის type",
+                        "TypeScript-ში შეგვიძლია განსაზღვროთ ცვლადის scope",
+                        "TypeScript-ში შეგვიძლია განსაზღვროთ ცვლადის value",
+                        "TypeScript-ში შეგვიძლია განსაზღვროთ ცვლადის name"
+                    ],
+                    correct: 0,
+                    explanation: "TypeScript-ში შეგვიძლია განსაზღვროთ ცვლადის type, რაც  JavaScript-ში არ არსებობს."
+                },
+                {
+                    question:"რა არის ინტერფეისი TypeScript-ში?",
+                    code:`interface Person {
+    name: string;
+}
+let person: Person = { name: "ანა" };`,
+                    options:[
+                        "ობიექტის სტრუქტურის განსაზღვრის კონტრაქტი",
+                        "კლასის ჩანაცვლება",
+                        "გაშვების დროის ტიპის შემოწმება",
+                        "JavaScript ობიექტი"
+                    ],
+                    correct: 0,
+                    explanation: "ინტერფეისი განსაზღვრავს არსებითადი კლასის ან ფუნქციის სინტაქსის გზას."
+                },
+                {
+                    question:"რას აკეთებს any ტიპი?",
+                    code:`let x: any;
+x = 42;
+x = "გამარჯობა"; // შეცდომა არაა`,
+                    options:[
+                        "გამორთავს ტიპის შემოწმებას",
+                        "აძლიერებს მკაცრ ტიპიზაციას",
+                        "მხოლოდ პრიმიტივებს ნებადართავს",
+                        "აგდებს შეცდომებს"
+                    ],
+                    correct:0,
+                    explanation:"any ტიპი ნებადართავს ნებისმიერ მნიშვნელობას, გვერდს უვლის ტიპის შემოწმებას."
+                },
+                {
+                    question:"როგორ განისაზღვრება ფუნქციის ტიპი TypeScript-ში?",
+                    code:`let add: (a: number, b: number) => number;
+add = function(x: number, y: number): number { return x + y; };`,
+                },
                 {
                     question: "რა არის TypeScript-ის ძირითადი მიზანი?",
                     code: `let message: string = 'Hello';
@@ -369,6 +939,120 @@ message = 42; // შეცდომა`,
                 }
             ],
             tsMedium: [
+                {
+                    question: "რა არის ტიპის დაცვა (Type Guards)?",
+                    code:`function isString(value: any): value is string {
+    return typeof value === 'string';
+}
+let x: unknown;
+if (isString(x)) {
+    console.log(x.toUpperCase()); // OK
+}`,
+                    options:[
+                        "ამოწმებს ტიპს გაშვების დროს",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ტიპის დაცვა ამცირებს ტიპს გაშვების დროს შემოწმებით, მაგ. typeof."
+                },
+                {
+                    question: "რა არის განმარჩევი გაერთიანება (discriminated union)?",
+                    code:`interface Circle {
+    kind: "circle";
+    radius: number;
+}
+interface Square {
+    kind: "square";
+    side: number;
+}
+type Shape = Circle | Square;
+function getArea(shape: Shape): number {
+    switch (shape.kind) {
+        case "circle": return Math.PI * shape.radius ** 2;
+        case "square": return shape.side ** 2;
+    }
+}`,
+                    options:[
+                        "იყენებს ლიტერალს გაერთიანების განსარჩევად",
+                        "მხოლოდ კლასებისთვის",
+                        "არაა მხარდაჭერილი",
+                        "ჩაანაცვლებს ინტერფეისებს"
+                    ],
+                    correct: 0,
+                    explanation: "განმარჩევი გაერთიანება იყენებს საერთო თვისებას ტიპის შესამცირებლად."
+                },
+                {
+                    question: "რა არის გარდაქმნილი ტიპი (mapped type)?",
+                    code:`type Readonly<T> = {
+    readonly [K in keyof T]: T[K];
+};
+interface User {
+    name: string;
+    age: number;
+}
+type ReadonlyUser = Readonly<User>;`,
+                    options:[
+                        "გარდაქმნის ტიპის თვისებებს",
+                        "ქმნის მასივებს",
+                        "მხოლოდ გაერთიანებებისთვის",
+                        "არაა მხარდაჭერილი"
+                    ],
+                    correct: 0,
+                    explanation: "გარდაქმნილი ტიპი არის ახალი ტიპი, რომელიც შეიქმნა არსებული ტიპის გარდაქმნით."
+                },
+                {
+                    question:"რა არის ტიპის შემცირება in ოპერატორით?",
+                    code:`interface User {
+    name: string;
+    age?: number;
+}
+function showUser(user: User) {
+    if ('age' in user) {
+        console.log(user.age); // OK
+    }
+}`,
+                    options:[
+                        "ამოწმებს თვისების არსებობას",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",             
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "in operator ამოწმებს თვისების არსებობას ობიექტში."
+                },
+                {
+                    question: "რა არის გადაკვეთის ტიპი (intersection type)?",
+                    code:`type A = { a: number };
+type B = { b: string };
+type C = A & B;
+let x: C = { a: 1, b: "გამარჯობა" };`,
+                    options: [
+                         "აერთიანებს რამდენიმე ტიპს",
+                         "გამორიცხავს თვისებებს",
+                         "მხოლოდ გაერთიანებებისთვის",
+                         "არაა მხარდაჭერილი"
+                        ],
+                    correct: 0,
+                    explanation: "გადაკვეთის ტიპი აერთიანებს მრავალი ტიპის თვისებებს."
+                },
+                {
+                    question:"რა არის გენერიკული შეზღუდვა?",
+                    code:`function getLength<T extends { length: number }>(obj: T): number {
+    return obj.length;
+}
+console.log(getLength([1, 2])); // OK
+console.log(getLength(42)); // შეცდომა`,
+                     options:[
+                        "განსაზღვრავს ფუნქციის პარამეტრის ტიპს",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",     
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                     correct: 0,
+                     explanation: "გენერიკული შეზღუდვა არის ფუნქციის პარამეტრის ტიპის განსაზღვრა, რომელიც შეიძლება იყოს ნებისმიერი ტიპი."
+                },
                 {
                     question: "რა არის Type Guards?",
                     code: `function isString(value: any): value is string {
@@ -400,6 +1084,126 @@ let p: Person = person; // OK`,
                     ],
                     correct: 0,
                     explanation: "Structural Typing (duck typing) ამოწმებს type-ის თავსებადობას სტრუქტურის მიხედვით."
+                },
+                {
+                    question:"რა არის სტრუქტურული ტიპიზაცია?",
+                    code:`interface Person {
+    name: string;
+}
+let person = { name: "ანა", age: 25 };
+let p: Person = person; // OK`,
+                    options: [
+                        "ამოწმებს ტიპს სტრუქტურის მიხედვით",
+                        "მხოლოდ კლასებთან მუშაობს",
+                        "არ არსებობს",
+                        "მხოლოდ ინტერფეისებთან"
+                    ],
+                    correct: 0,
+                    explanation: "სტრუქტურული ტიპიზაცია (duck typing) ამოწმებს ტიპის თავსებადობას სტრუქტურით."
+                },
+                {
+                    question:"რა არის პირობითი ტიპები განაწილებით?",
+                    code:`type ExtractString<T> = T extends string ? T : never;
+type Result = ExtractString<string | number | boolean>; // string`,
+                    options:[
+                        "განაწილებულია გაერთიანებაზე",
+                        "მხოლოდ მასივებთან",
+                        "არ არსებობს",
+                        "ჩაანაცვლებს გაერთიანებებს"
+                    ],
+                    correct: 0,
+                    explanation: "პირობითი ტიპები განაწილებენ პირობას გაერთიანების თითოეულ წევრზე."
+                },
+                {
+                    question:"რა არის never ტიპი?",
+                    code:`function fail(): never {
+    throw new Error("რაღაც არასწორია");
+}
+let result: never = fail();`,
+                    options:[
+                        "წარმოადგენს მიუწვდომელ მნიშვნელობებს",
+                        "მხოლოდ null-ისთვის",
+                        "იგივეა, რაც void",
+                        "არ არსებობს"
+                    ],
+                    correct: 0,
+                    explanation: "never ტიპი გამოიყენება ფუნქციებისთვის, რომლებიც არასდროს აბრუნებენ მნიშვნელობას."
+                },
+                {
+                    question:"რა არის ტიპის შემცირება ინტერსექციით?",
+                    code:`type A = { a: number };
+type B = { b: string };
+type C = A & B;
+let x: C = { a: 1, b: "გამარჯობა" };`,
+                    options:[
+                        "შემცირებს ტიპს ინტერსექციის მიხედვით",
+                        "მხოლოდ მასივებთან მუშაობს",
+                        "არ არის TypeScript-ის ნაწილი",
+                        "არ მუშაობს JavaScript-ში"
+                    ],
+                    correct: 0,
+                    explanation: "ინტერსექცია შეამცირებს ტიპს ინტერსექციის მიხედვით."
+                },
+                {
+                    question:"რა არის რეკურსიული ტიპები?",
+                    code:`interface Json {
+    [key: string]: string | number | boolean | Json | Json[];
+}
+let data: Json = {
+    name: "ანა",
+    details: { age: 25, city: "თბილისი" }
+};`,
+                    options: [
+                        "ტიპები, რომლებიც თავადვე მოიხსენიებენ",
+                        "მხოლოდ მასივებთან",
+                        "არ არსებობს",
+                        "ცვლის ინტერფეისებს"
+                    ],
+                    correct: 0,
+                    explanation: "რეკურსიული ტიპები საშუალებას აძლევს ტიპს მოიხსენიოს თავი, მაგ. ჩადგმული სტრუქტურებისთვის."
+                },
+                {
+                    question:"რა არის infer საკვანძო სიტყვა?",
+                    code:`type ElementType<T> = T extends (infer U)[] ? U : never;
+type Result = ElementType<number[]>; // number`,
+                    options: [
+                        "აღებულია ტიპი პირობითი ტიპიდან",
+                        "მხოლოდ კლასებთან",
+                        "არ არსებობს",
+                        "ჩაანაცვლებს გენერიკებს"
+                    ],
+                    correct: 0,
+                    explanation: "infer აღებს ტიპს პირობითი ტიპის შიგნით."
+                },
+                {
+                    question:"რა არის შაბლონური ლიტერალური ტიპები?",
+                    code:`type Greeting = "გამარჯობა" | "მოგესალმები";
+type Message = \`\${Greeting} სამყარო\`;
+let msg: Message = "გამარჯობა სამყარო"; // OK`,
+                    options: [
+                        "ქმნის სტრიქონის ლიტერალების კომბინაციებს",
+                        "მხოლოდ მასივებთან",
+                        "არ არსებობს",
+                        "ჩაანაცვლებს სტრიქონებს"
+                    ],
+                    correct: 0,
+                    explanation: "შაბლონური ლიტერალური ტიპები აერთიანებს ლიტერალებს ახალი სტრიქონის ტიპების შესაქმნელად."
+                },
+                {
+                    question:"რა არის keyof მნიშვნელობის ტიპებთან?",
+                    code:`interface User {
+    name: string;
+    age: number;
+}
+type NameType = User["name"]; // string`,
+                    options: [
+                        "აბრუნებს თვისების ტიპს",
+                        "მხოლოდ კლასებთან",
+                        "არ არსებობს",
+                        "ჩაანაცვლებს keyof"
+                    ],
+                    correct: 0,
+                    explanation: "მნიშვნელობის ტიპები აბრუნებენ თვისების ტიპს [key]-ის გამოყენებით."
                 },
                 {
                     question: "რა არის Never Type?",
