@@ -1264,18 +1264,30 @@
             const question = currentQuiz.questions[currentQuestionIndex];
             const isCorrect = answerIndex === question.correct;
             
+            // Disable all options to prevent changing answer
+            const optionsContainer = document.getElementById('answerOptions');
+            const optionButtons = optionsContainer.querySelectorAll('button');
+            optionButtons.forEach(button => {
+                button.disabled = true;
+                button.style.pointerEvents = 'none';
+                button.classList.add('opacity-50');
+            });
+            
+            // Highlight correct and incorrect answers
+            optionButtons[question.correct].classList.add('bg-green-100', 'border-green-500');
+            if (!isCorrect) {
+                optionButtons[answerIndex].classList.add('bg-red-100', 'border-red-500');
+            }
+            
             // Create or update explanation element
             let explanationElement = document.getElementById('explanationBox');
             if (!explanationElement) {
                 explanationElement = document.createElement('div');
                 explanationElement.id = 'explanationBox';
+                explanationElement.className = 'mt-6 p-4 bg-gray-50 rounded-lg border-l-4 border-indigo-500';
                 document.getElementById('questionCard').appendChild(explanationElement);
             }
             
-            // Style based on correct/incorrect
-            explanationElement.className = `mt-4 p-4 rounded-lg ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
-            
-            // Set explanation content
             explanationElement.innerHTML = `
                 <div class="flex items-start">
                     <span class="mr-2 mt-1">
@@ -1289,11 +1301,9 @@
                     </div>
                 </div>
             `;
-            
-            // Show explanation
             explanationElement.classList.remove('hidden');
             
-            displayQuestion(); // Refresh to show selection
+            updateNavigationButtons();
         }
 
         // Navigation
