@@ -88,17 +88,17 @@
                             <h3 class="text-xl font-semibold text-gray-800">TypeScript</h3>
                         </div>
                         <div class="space-y-3">
-                            <button onclick="startQuiz('typescript', 'medium')"
+                            <button onclick="startQuiz('typescript', 'beginner')"
                                     class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
                                 <i class="fas fa-seedling mr-2"></i>Beginner Level
                             </button>
                             <button onclick="startQuiz('typescript', 'medium')"
                                     class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
-                                <i class="fas fa-seedling mr-2"></i>medium Level
+                                <i class="fas fa-seedling mr-2"></i>Medium Level
                             </button>
                             <button onclick="startQuiz('typescript', 'advanced')"
-                                    class="w-full bg-blue-800 hover:bg-blue-900 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
-                                <i class="fas fa-fire mr-2"></i>Advanced Level
+                                    class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 px-4 rounded-lg transition duration-200 font-medium">
+                                <i class="fas fa-brain mr-2"></i>Advanced Level
                             </button>
                         </div>
                     </div>
@@ -220,17 +220,53 @@
             javascript: {
                 beginner: [
                     {
-                        question: "Which of the following is the correct way to declare a variable in JavaScript?",
-                        options: ["var myVar = 5;", "variable myVar = 5;", "v myVar = 5;", "declare myVar = 5;"],
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof 'Hello World');",
+                        options: ["string", "text", "object", "undefined"],
                         correct: 0,
-                        explanation: "The 'var' keyword is one of the correct ways to declare a variable in JavaScript. 'let' and 'const' are also valid."
+                        explanation: "The typeof operator returns 'string' for string values."
                     },
                     {
-                        question: " What is the output of the following code?",
-                        code: "console.log(2 + '2');",
-                        options: ["4", "22", "2 + 2", "undefined"],
+                        question:"What is the output of the JavaScript code below?",
+                        code: "console.log(10 / 0);",
+                        options: ["0", "10", "undefined", "Infinity"],
+                        correct: 3,
+                        explanation: "In JavaScript, dividing a number by zero results in Infinity."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(10 % 3);",
+                        options: ["3", "1", "0", "undefined"],
                         correct: 1,
-                        explanation: "When a number is added to a string, JavaScript converts the number to a string and concatenates them."
+                        explanation: "The % operator returns the remainder of a division."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(10 - '5');",
+                        options: ["5", "105", "undefined", "NaN"],
+                        correct: 0,
+                        explanation: "When a string is subtracted from a number, JavaScript converts the string to a number."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(10 - 'Hello World');",
+                        options: ["-Hello World", "undefined", "NaN", "Error"],
+                        correct: 2,
+                        explanation: "When a string is subtracted from a number, JavaScript converts the string to a number. Since 'Hello World' cannot be converted to a number, the result is NaN."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(10 * '5');",
+                        options: ["50", "105", "undefined", "NaN"],
+                        correct: 0,
+                        explanation: "When a string is multiplied by a number, JavaScript converts the string to a number."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(10 / 'Hello World');",
+                        options: ["0.1", "undefined", "NaN", "Error"],
+                        correct: 2,
+                        explanation: "When a string is divided by a number, JavaScript converts the string to a number. Since 'Hello World' cannot be converted to a number, the result is NaN."
                     },
                     {
                         question: "What is the output of the following code?",
@@ -240,11 +276,11 @@
                         explanation: "The + operator concatenates strings."
                     },
                     {
-                        question: " What is the output of the following code?",
-                        code: "console.log(typeof 10);",
-                        options: ["number", "string", "object", "undefined"],
-                        correct: 0,
-                        explanation: "The typeof operator returns 'number' for numeric values."
+                        question: "What is the output of the following code?",
+                        code: "console.log('Hello' - 'World');",
+                        options: ["HelloWorld", "Hello World", "Hello-World", "NaN"],
+                        correct: 3,
+                        explanation: "When a string is subtracted from another string, the result is NaN."
                     },
                     {
                         question: "What is the output of the following code?",
@@ -302,6 +338,20 @@
                         explanation: "The == operator performs type coercion, so 10 == '10' returns true."
                     },
                     {
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof null);",
+                        options: ["null", "object", "undefined", "string"],
+                        correct: 1,
+                        explanation: "In JavaScript, typeof null returns 'object' due to a historical bug."
+                    },
+                    {
+                        question:"What is the output of the following code?",
+                        code:"console.log(1 + '1');",
+                        options:["11", "2", "1", "error"],
+                        correct:0,
+                        explanation:"The number 1 is coerced to a string and concatenated with '1', resulting in '11'."
+                    },
+                    {
                         question: "Which method is used to remove the last element from an array?",
                         options: ["pop()", "remove()", "delete()", "removeLast()"],
                         correct: 0,
@@ -323,12 +373,117 @@
                         explanation: "Due to floating-point arithmetic, 0.1 + 0.2 does not exactly equal 0.3."
                     },
                     {
-                        question: " რა არის var-ის scope?",
-                        code:`var x = 1;
-                        {
-                            var x = 2;
-                            }`
+                        question: "What is the output of the following code?",
+                        code: "let x = [1, 2, 3]; let y = x; y.push(4); console.log(x);",
+                        options:  ["[1, 2, 3]", "[1, 2, 3, 4]", "[4]", "error"],
+                        correct: 1,
+                        explanation: "Arrays are passed by reference in JavaScript, so modifying y also modifies x."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(0.1 + 0.2 === 0.3);",
+                        options: ["true", "false", "undefined", "error"],
+                        correct: 1,
+                        explanation: "Due to floating-point precision issues in JavaScript, 0.3 is not exactly equal to 0.3."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "const obj = { a: 1 }; Object.freeze(obj); obj.a = 2; console.log(obj.a);",
+                        options: ["1", "2", "undefined", "error"],
+                        correct: 0,
+                        explanation: "Object.freeze prevents modifications, so obj.a remains 1."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log('b' + 'a' + +'a' + 'a');",
+                        options: ["banana", "baNaNa", "baaa", "error"],
+                        correct: 0,
+                        explanation: "+'a' evaluates to NaN, so the result is 'ba' + NaN + 'a' = 'baNaNa'."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "let x = 10; function foo() { console.log(x); let x = 20; } foo();",
+                        options: ["10", "20", "undefined", "error"],
+                        correct: 2,
+                        explanation: "Due to hoisting, let x = 20 is hoisted but not initialized, so x is undefined when logged."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(typeof typeof 1);",
+                        options: ["number", "string", "object", "undefined"],
+                        correct: 1,
+                        explanation: "typeof 1 returns 'number', and typeof 'number' returns 'string'."
 
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + '2' + 3);",
+                        options: ["123", "321", "15", "6"],
+                        correct: 0,
+                        explanation: "When a number is added to a string, JavaScript converts the number to a string."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + 2 + '3');",
+                        options: ["123", "321", "15", "6"],
+                        correct: 2,
+                        explanation: "When a number is added to a string, JavaScript converts the number to a string."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + true);",
+                        options: ["1true", "2", "11", "error"],
+                        correct: 1,
+                        explanation: "true is converted to 1 when added to a number."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + false);",
+                        options: ["1false", "1", "0", "error"],
+                        correct: 2,
+                        explanation: "false is converted to 0 when added to a number."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + null);",
+                        options: ["1null", "1", "0", "error"],
+                        correct: 1,
+                        explanation: "null is converted to 0 when added to a number."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + undefined);",
+                        options: ["1undefined", "1", "NaN", "error"],
+                        correct: 2,
+                        explanation: "undefined is converted to NaN when added to a number."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code:"console.log(0 == '0');",
+                        options:["true", "false", "undefined", "error"],
+                        correct:0,
+                        explanation:"Loose equality (==) coerces '0' to 0, so 0 == '0' is true."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "let x; console.log(x);",
+                        options:["null", "undefined", "0", "error"],
+                        correct: 1,
+                        explanation:  "An uninitialized variable in JavaScript is undefined."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + {});",
+                        options: ["1[object Object]", "1", "NaN", "error"],
+                        correct: 2,
+                        explanation: "Objects are converted to '[object Object]' when added to a number, which results in NaN."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log(1 + []);",
+                        options: ["1", "1undefined", "NaN", "error"],
+                        correct: 0,
+                        explanation: "Arrays are converted to an empty string when added to a number."
                     },
                     {
                         question: "What is the output of the following code?",
@@ -336,13 +491,6 @@
                         options: ["object", "null", "undefined", "error"],
                         correct: 0,
                         explanation: "In JavaScript, null is considered an object."
-                    },
-                    {
-                        question: "What is the output of the following code?",
-                        code: "console.log(typeof NaN);",
-                        options: ["number", "NaN", "undefined", "error"],
-                        correct: 0,
-                        explanation: "NaN is a special value of the number type."
                     },
                     {
                         question: "What is the output of the following code?",
@@ -380,6 +528,41 @@
                         explanation: "call() accepts arguments individually: func.call(this, arg1, arg2), while apply() accepts an array: func.apply(this, [arg1, arg2])"
                     },
                     {
+                        question: "What is the output of the following code?",
+                        code: "(function() { return typeof arguments; })();",
+                        options: ["array", "object", "arguments", "undefined"],
+                        correct: 1,
+                        explanation: "The arguments object is an object, not an array, in JavaScript."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "console.log((function(x, x) { return x; })(1, 2));",
+                        options: ["1", "2", "undefined", "error"],
+                        correct: 1,
+                        explanation: "The second parameter x shadows the first, so the function returns the last argument, 2."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "const a = () => { return { x: 1 }; }; console.log(a().x);",
+                        options: ["1", "undefined", "error", "{ x: 1 }"],
+                        correct: 0,
+                        explanation: "The arrow function returns an object { x: 1 }, and a().x accesses the property x."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "let x = 10; { let x = 20; { let x = 30; console.log(x); } }",
+                        options: ["10", "20", "30", "error"],
+                        correct: 2,
+                        explanation: "Block-scoped let creates a new x in each block, so the innermost x is 30."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "Promise.resolve(1).then(() => 2).then(console.log);",
+                        options: ["1", "2", "undefined", "error"],
+                        correct: 1,
+                        explanation: "The second .then logs the value returned by the previous .then, which is 2."
+                    },
+                    {
                         question: "What will this Promise code output?",
                         code: "console.log('1');\nPromise.resolve().then(() => console.log('2'));\nconsole.log('3');",
                         options: ["1, 3, 2", "1, 2, 3", "2, 1, 3", "3, 2, 1"],
@@ -406,6 +589,54 @@
                         explanation: "This creates a new variable 'userName' with value 'John' and 'age' with default value 25."
                     },
                     {
+                        question: "what is the result of this code?",
+                        code: "const arr = [1, 2, 3, 4, 5];\nconst [first, second, ...rest] = arr;",
+                        options: [
+                            "first=1, second=2, rest=[3, 4, 5]",
+                            "first=1, second=2, rest=3",
+                            "first=[1, 2], second=3, rest=[4, 5]",
+                            "first=1, second=2, rest=undefined"
+                        ],
+                        correct: 0,
+                        explanation: "The spread operator (...) collects the remaining elements into an array."
+                    },
+                    {
+                        question: "What is the output of this code?",
+                        code: "const obj = { a: 1, b: 2, c: 3 };\nconst { a, ...rest } = obj;",
+                        options: [
+                            "a=1, rest={b: 2, c: 3}",
+                            "a=1, rest=2",
+                            "a=1, rest={b: 2}",
+                            "a=1, rest=undefined"
+                        ],
+                        correct: 0,
+                        explanation: "The spread operator (...) collects the remaining properties into an object."
+                    },
+                    {
+                        question: "What is the output of this code?",
+                        code: "const arr = [1, 2, 3, 4, 5];\nconst [first, , third, ...rest] = arr;",
+                        options: [
+                            "first=1, third=3, rest=[4, 5]",
+                            "first=1, third=2, rest=[3, 4, 5]",
+                            "first=1, third=3, rest=4",
+                            "first=1, third=2, rest=3"
+                        ],
+                        correct: 0,
+                        explanation: "The commas in the destructuring pattern skip values in the array."
+                    },
+                    {
+                        question: "What is the output of this code?",
+                        code: "const obj = { a: 1, b: 2, c: 3 };\nconst { a, b, ...rest } = obj;",
+                        options: [
+                            "a=1, b=2, rest={c: 3}",
+                            "a=1, b=2, rest=3",
+                            "a=1, b=2, rest={}",
+                            "a=1, b=2, rest=undefined"
+                        ],
+                        correct: 0,
+                        explanation: "The spread operator (...) collects the remaining properties into an object."
+                    },
+                    {
                         question: "What will this async/await code log?",
                         code: "async function test() {\n  console.log('A');\n  await Promise.resolve();\n  console.log('B');\n}\ntest();\nconsole.log('C');",
                         options: ["A, C, B", "A, B, C", "C, A, B", "B, A, C"],
@@ -420,6 +651,32 @@
                         explanation: "Function declarations are hoisted above variable declarations, so x is the function."
                     },
                     {
+                        question: "what is will this object code output?",
+                        code: "const obj = { a: 1, b: 2, c: 3 };\nconst { a, ...rest } = obj;\nconsole.log(a, rest);",
+                        options: ["1, { b: 2, c: 3 }", "1, { a: 1, b: 2, c: 3 }", "1, { b: 2 }", "1, { c: 3 }"],
+                        correct: 0,
+                        explanation: "The spread operator (...) collects the remaining properties into an object."
+                    },
+                    {
+                        question: "What is the output of this code?",
+                        code: "const arr = [1, 2, 3, 4, 5];\nconst [first, second, ...rest] = arr;\nconsole.log(first, second, rest);",
+                        options: [
+                            "1, 2, [3, 4, 5]",
+                            "1, 2, 3",
+                            "1, 2, [3, 4]",
+                            "1, 2, [5]"
+                        ],
+                        correct: 0,
+                        explanation: "The spread operator (...) collects the remaining elements into an array."
+                    },
+                    {
+                        question: "what is the name of this object method?",
+                        code: "const obj = { a: 1, b: 2, c: 3 };\nconst { a, ...rest } = obj;",
+                        options: ["Destructuring", "Spread", "Rest", "Object"],
+                        correct: 2,
+                        explanation: "The ...rest syntax is called the rest operator."
+                    },
+                    {
                         question: "What does this spread operator code create?",
                         code: "const arr1 = [1, 2];\nconst arr2 = [3, 4];\nconst result = [...arr1, ...arr2];",
                         options: ["[1, 2, 3, 4]", "[[1, 2], [3, 4]]", "[1, 2], [3, 4]", "Error"],
@@ -430,6 +687,88 @@
             },
             typescript: {
                 beginner: [
+                    {
+                        question: " what is the output of this code?",
+                        code: "let x: number = 5; console.log(x);",
+                        options: ["5", "undefined", "number", "error"],
+                        correct: 0,
+                        explanation: "The variable x is assigned the number 5 and logged to the console."
+                    },
+                    {
+                        question: "What is the output of this code?",
+                        code: "let x: string = 'hello'; console.log(x);",
+                        options: ["hello", "undefined", "string", "error"],
+                        correct: 0,
+                        explanation: "The variable x is assigned the string 'hello' and logged to the console."
+                    },
+                    {
+                        question: "What is the output of this code?",
+                        code: "let x: boolean = true; console.log(x);",
+                        options: ["true", "false", "undefined", "error"],
+                        correct: 0,
+                        explanation: "The variable x is assigned the boolean true and logged to the console."
+                    },
+                    {
+                        question: "What is TypeScript?",
+                        options: ["A programming language", "A library", "A framework", "A database"],
+                        correct: 0,
+                        explanation: "TypeScript is a programming language."
+                    },
+                    {
+                        question: "What is the main purpose of TypeScript?",
+                        options: ["To add static types to JavaScript", "To replace JavaScript", "To create web pages", "To manage databases"],
+                        correct: 0,
+                        explanation: "TypeScript adds static types to JavaScript to catch errors at compile time."
+                    },
+                    {
+                        question: "What is the correct way to define a function in TypeScript?",
+                        code: "function add(a: number, b: number): number {\n  return a + b;\n}",
+                        options: ["This is correct", "Use 'function' instead of 'func'", "Add 'public' before parameters", "Use 'any' instead of 'number'"],
+                        correct: 0,
+                        explanation: "This is the correct syntax for defining a function in TypeScript."
+                    },
+                    {
+                        question: "What is the correct way to define a class in TypeScript?",
+                        code: "class Person {\n  name: string;\n  age: number;\n}",
+                        options: ["This is correct", "Use 'class' instead of 'type'", "Add 'public' before properties", "Use 'any' instead of 'string'"],
+                        correct: 0,
+                        explanation: "This is the correct syntax for defining a class in TypeScript."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "let x: number = 5; console.log(x);",
+                        options: ["5", "undefined", "number", "error"],
+                        correct: 0,
+                        explanation: "The variable x is assigned the number 5 and logged to the console."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "let x: string = 'hello'; x = 123; console.log(x);",
+                        options: ["hello", "123", "error", "undefined"],
+                        correct: 2,
+                        explanation: "TypeScript enforces type safety, so assigning a number to a string variable causes a compilation error."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "let x: boolean = true; console.log(x);",
+                        options: ["true", "false", "undefined", "error"],
+                        correct: 0,
+                        explanation: "The variable x is assigned the boolean true and logged to the console."
+                    },
+                    {
+                       question: "What is the output of the following code?",
+                       code: "let x: any = 5; x = 'hello'; console.log(x);",
+                       options: ["5", "hello", "undefined", "error"],
+                       correct: 1,
+                       explanation: "The any type allows reassignment to any value, so x becomes 'hello'."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "let x: number[] = [1, 2, 3]; console.log(x[0]);",
+                        options: ["1", "2", "undefined", "error"],
+                        correct: 0,
+                        explanation: "The array x contains numbers, and x[0] accesses the first element, 1."
+                    },
                     {
                         question: "How do you specify that a variable should be a string in TypeScript?",
                         options: ["let name: string", "let name as string", "let string name", "let name = string"],
@@ -484,6 +823,20 @@
                 ],
                 medium:[
                     {
+                        question: "What is the output of the following code?",
+                        code: "interface Person { name: string; } let p: Person = { name: 'Alice' }; console.log(p.name);",
+                        options: ["Alice", "undefined", "Person", "error"],
+                        correct: 0,
+                        explanation: "The interface Person defines a name property, and p.name accesses the value 'Alice'."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "function greet(name: string = 'Guest'): string { return `Hello, ${name}`; } console.log(greet());",
+                        options: ["Hello, undefined", "Hello, Guest", "error", "Hello"],
+                        correct: 1,
+                        explanation: "The function greet has a default parameter 'Guest', which is used when no argument is provided."
+                    },
+                    {
                         question: "What is the correct way to define a tuple type in TypeScript?",
                         options: ["[string, number]", "string, number", "(string, number)", "string | number"],
                         correct: 0,
@@ -503,6 +856,27 @@
                         explanation: "Generics are defined using angle brackets with a type parameter."
                     },
                     {
+                        question: "What is the output of the following code?",
+                        code: "let x: [number, number] = [1, 2]; x.push(3); console.log(x.length);",
+                        options: ["2", "3", "undefined", "error"],
+                        correct: 2,
+                        explanation:  "Tuple type restricts length, but does not prevent runtime push operations, so x.length is 3."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type Point = { x: number; y: number }; let p: Point = { x: 1 }; console.log(p.y);",
+                        options: ["1", "undefined", "0", "error"],
+                        correct: 1,
+                        explantion: "The property y is optional in the Point type, so p.y is undefined."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "function add(a: number, b: number): number { return a + b; } console.log(add(1, '2'));",
+                        options: ["3", "12", "error", "undefined"],
+                        correct: 2,
+                        explanation: "TypeScript enforces type checking, so passing a string to a number parameter causes a compilation error."
+                    },
+                    {
                         question: "What is the correct way to define a type alias in TypeScript?",
                         code: "type Point = { x: number; y: number; };",
                         options: ["This is correct", "Use 'interface' instead of 'type'", "Add 'public' before properties", "Use 'class' instead of 'type'"],
@@ -517,14 +891,155 @@
                         explanation: "Type assertions are defined using the 'as' keyword."
                     },
                     {
+                        question: "What is the correct way to define a union type in TypeScript?",
+                        options: ["string | number", "string + number", "string & number", "string || number"],
+                        correct: 0,
+                        explanation: "Union types are created using the pipe (|) operator."
+                    },
+                    {
+                        question: "What is the correct way to define an intersection type in TypeScript?",
+                        options: ["string & number", "string | number", "string + number", "string || number"],
+                        correct: 0,
+                        explanation: "Intersection types are created using the ampersand (&) operator."
+                    },
+                    {
+                        question: "What is the correct way to define a generic type in TypeScript?",
+                        code: "function identity<T>(arg: T): T {\n  return arg;\n}",
+                        options: ["This is correct", "Use 'generic' instead of 'T'", "Put types in brackets", "Use 'any' instead of 'T'"],
+                        correct: 0,
+                        explanation: "Generics are defined using angle brackets with a type parameter."
+                    },
+                    {
+                        question: "What is the correct way to define a readonly property in TypeScript?",
+                        options: ["readonly property: string", "property: readonly string", "property: string readonly", "readonly: string"],
+                        correct: 1,
+                        explanation: "Readonly properties are defined using the 'readonly' keyword before the property name."
+                    },
+                    {
+                        question: "What is the correct way to define a function type in TypeScript?",
+                        options: ["function: (arg: string) => void", "function arg: string): void", "(arg: string) => void", "function (arg: string): void"],
+                        correct: 2,
+                        explanation: "Function types are defined using parentheses for parameters and an arrow (=>) followed by the return type."
+                    },
+                    {
+                        question: "What is the correct way to define a tuple type in TypeScript?",
+                        options: ["[string, number]", "string, number", "(string, number)", "string | number"],
+                        correct: 0,
+                        explanation: "Tuples are defined using square brackets with specific types."
+                    },
+                    {
+                        question: "What is the correct way to define a type assertion in TypeScript?",
+                        code: "let value: any = 'hello';\nlet strLength: number = (value as string).length;",
+                        options: ["This is correct", "Use 'assert' instead of 'as'", "Put types in brackets", "Use 'any' instead of 'string'"],
+                        correct: 0,
+                        explanation: "Type assertions are defined using the 'as' keyword."
+                    },
+                    {
+                        question: " what is the correct way to delare a variable in TypeScript?",
+                        options: ["var myVar = 5;", "let myVar = 5;", "const myVar = 5;", "All of the above"],
+                        correct: 3,
+                        explanation: "TypeScript supports all three variable declaration keywords: var, let, and const."
+                    },
+                    {
                         question: "What is the correct way to define a type guard in TypeScript?",
                         code: "function isString(value: any): value is string {\n  return typeof value === 'string';\n}",
                         options: ["This is correct", "Use 'guard' instead of 'is'", "Put types in brackets", "Use 'any' instead of 'string'"],
                         correct: 0,
                         explanation: "Type guards are defined using the 'is' keyword."
+                    },
+                    {
+                        question: "What is the correct way to define a namespace in TypeScript?",
+                        code: "namespace MathUtils {\n  export function add(a: number, b: number): number {\n    return a + b;\n  }\n}",
+                        options: ["This is correct", "Use 'module' instead of 'namespace'", "Add 'public' before functions", "Use 'any' instead of 'number'"],
+                        correct: 0,
+                        explanation: "Namespaces are defined using the 'namespace' keyword."
                     }
                 ], 
                 advanced: [
+                    {
+                        question:  "What is the output of the following code?",
+                        code: "type Union = string | number; let x: Union = 42; if (typeof x === 'string') { console.log(x.toUpperCase()); } else { console.log(x); }",
+                        options: ["42", "error", "undefined", "STRING"],
+                        correct: 0,
+                        explanation: "The type guard checks if x is a string; since x is a number, it logs 42."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type Intersection = string & number; let x: Intersection = 42; console.log(x);",
+                        options: ["42", "error", "undefined", "STRING"],
+                        correct: 1,
+                        explanation: "An intersection of string and number is not possible, so this causes a compilation error."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "function identity<T>(arg: T): T {\n  return arg;\n}\nlet result = identity<string>('hello');\nconsole.log(result);",
+                        options: ["hello", "error", "undefined", "STRING"],
+                        correct: 0,
+                        explanation: "The generic function returns the argument as is, so it logs 'hello'."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type Point = { x: number; y: number }; let p: Point = { x: 1, y: 2 }; console.log(p.z);",
+                        options: ["1", "2", "undefined", "error"],
+                        correct: 3,
+                        explanation: "The property z is not defined in the Point type, so this causes a compilation error."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type Tuple = [string, number]; let t: Tuple = ['hello', 42]; console.log(t[2]);",
+                        options: ["hello", "42", "undefined", "error"],
+                        correct: 3,
+                        explanation: "Tuples have a fixed length, so accessing an out-of-bounds index causes a compilation error."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type Union = string | number; let x: Union = 'hello'; console.log(x.length);",
+                        options: ["5", "error", "undefined", "STRING"],
+                        correct: 0,
+                        explanation: "The property length exists on both string and number, so it logs 5."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type Intersection = string & number; let x: Intersection = 'hello'; console.log(x.length);",
+                        options: ["5", "error", "undefined", "STRING"],
+                        correct: 1,
+                        explanation: "An intersection of string and number is not possible, so this causes a compilation error."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type A = { a: string }; type B = { b: number }; let x: A & B = { a: 'hello', b: 123 }; console.log(x.b);",
+                        options:  ["hello", "123", "undefined", "error"],
+                        correct: 1,
+                        explanation: "The intersection type A & B requires both a and b, so x.b is 123."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type Func = <T>(x: T) => T; const id: Func = x => x; console.log(id(42));",
+                        options:  ["undefined", "42", "error", "T"],
+                        correct:1,
+                        explanation: "The generic identity function returns its input, so id(42) returns 42."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "class A { private x = 1; } class B extends A { getX() { return this.x; } } let b = new B(); console.log(b.getX());",
+                        options: ["1", "undefined", "error", "null"],
+                        correct: 2,
+                        explanation: "Private properties are not accessible in subclasses, causing a compilation error."
+                    },
+                    {
+                        question:  "What is the output of the following code?",
+                        code: "type Keys = 'a' | 'b'; type Obj = Record<Keys, number>; let x: Obj = { a: 1, b: 2 }; console.log(x.a);",
+                        options: ["1", "2", "undefined", "error"],
+                        correct: 0,
+                        explanation: "The Record utility type creates an object with specified keys and number values, so x.a is 1."
+                    },
+                    {
+                        question: "What is the output of the following code?",
+                        code: "type A = { a: string }; type B = { b: number }; let x: A | B = { a: 'hello' }; console.log(x.b);",
+                        options: ["hello", "123", "undefined", "error"],
+                        correct: 3,
+                        explanation: "The property b is not guaranteed in the union type A | B, so this causes a compilation error."
+                    },
                     {
                         question: "What does this mapped type do?",
                         code: "type Partial<T> = {\n  [P in keyof T]?: T[P];\n}",
@@ -674,9 +1189,37 @@
         function displayQuestion() {
             const question = currentQuiz.questions[currentQuestionIndex];
             const questionCard = document.getElementById('questionCard');
-           
+            
             document.getElementById('questionText').textContent = question.question;
-           
+            
+            // Hide explanation initially when displaying a new question
+            // But don't hide it if user has already answered this question
+            const explanationElement = document.getElementById('explanationBox');
+            if (explanationElement) {
+                if (userAnswers[currentQuestionIndex] === undefined) {
+                    explanationElement.classList.add('hidden');
+                } else {
+                    // If user already answered, update the explanation
+                    const isCorrect = userAnswers[currentQuestionIndex] === question.correct;
+                    explanationElement.className = `mt-4 p-4 rounded-lg ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+                    
+                    explanationElement.innerHTML = `
+                        <div class="flex items-start">
+                            <span class="mr-2 mt-1">
+                                <i class="fas ${isCorrect ? 'fa-check text-green-500' : 'fa-times text-red-500'}"></i>
+                            </span>
+                            <div>
+                                <p class="font-medium ${isCorrect ? 'text-green-700' : 'text-red-700'}">
+                                    ${isCorrect ? 'Correct!' : 'Incorrect!'}
+                                </p>
+                                <p class="text-gray-700 mt-1">${question.explanation}</p>
+                            </div>
+                        </div>
+                    `;
+                    explanationElement.classList.remove('hidden');
+                }
+            }
+            
             // Show code block if present
             const codeBlock = document.getElementById('codeBlock');
             if (question.code) {
@@ -685,11 +1228,11 @@
             } else {
                 codeBlock.classList.add('hidden');
             }
-           
+            
             // Display answer options
             const optionsContainer = document.getElementById('answerOptions');
             optionsContainer.innerHTML = '';
-           
+            
             question.options.forEach((option, index) => {
                 const optionElement = document.createElement('button');
                 optionElement.className = `w-full text-left p-4 rounded-lg border-2 border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 transition duration-200 ${
@@ -708,7 +1251,7 @@
                 optionElement.onclick = () => selectAnswer(index);
                 optionsContainer.appendChild(optionElement);
             });
-           
+            
             updateNavigationButtons();
             updateProgressBar();
         }
@@ -716,6 +1259,40 @@
         // Select Answer
         function selectAnswer(answerIndex) {
             userAnswers[currentQuestionIndex] = answerIndex;
+            
+            // Show explanation after selecting an answer
+            const question = currentQuiz.questions[currentQuestionIndex];
+            const isCorrect = answerIndex === question.correct;
+            
+            // Create or update explanation element
+            let explanationElement = document.getElementById('explanationBox');
+            if (!explanationElement) {
+                explanationElement = document.createElement('div');
+                explanationElement.id = 'explanationBox';
+                document.getElementById('questionCard').appendChild(explanationElement);
+            }
+            
+            // Style based on correct/incorrect
+            explanationElement.className = `mt-4 p-4 rounded-lg ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+            
+            // Set explanation content
+            explanationElement.innerHTML = `
+                <div class="flex items-start">
+                    <span class="mr-2 mt-1">
+                        <i class="fas ${isCorrect ? 'fa-check text-green-500' : 'fa-times text-red-500'}"></i>
+                    </span>
+                    <div>
+                        <p class="font-medium ${isCorrect ? 'text-green-700' : 'text-red-700'}">
+                            ${isCorrect ? 'Correct!' : 'Incorrect!'}
+                        </p>
+                        <p class="text-gray-700 mt-1">${question.explanation}</p>
+                    </div>
+                </div>
+            `;
+            
+            // Show explanation
+            explanationElement.classList.remove('hidden');
+            
             displayQuestion(); // Refresh to show selection
         }
 
